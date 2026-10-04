@@ -1,0 +1,458 @@
+﻿
+@model SMT_DELL_Project.Models.Stage
+
+@{
+    ViewData["Title"] = "Create Stage";
+}
+
+<div class="create-stage-page">
+
+    <div class="create-stage-container">
+
+        <!-- HEADER -->
+        <div class="create-stage-header">
+
+            <div class="create-stage-logo">
+                SMT
+            </div>
+
+            <div>
+                <h1>Create New Stage</h1>
+                <p>Add a new production stage</p>
+            </div>
+
+        </div>
+
+
+        <!-- FORM CARD -->
+        <div class="create-stage-card">
+
+            <form asp-controller="Home"
+                  asp-action="Create"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-message">
+                </div>
+
+
+                <!-- STAGE NAME -->
+                <div class="form-group">
+
+                    <label asp-for="StageName">
+                        Stage Name
+                    </label>
+
+                    <input asp-for="StageName"
+                           class="stage-input"
+                           placeholder="Enter stage name"
+                           autocomplete="off"
+                           autofocus />
+
+                    <span asp-validation-for="StageName"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="form-actions">
+
+                    <a asp-controller="Home"
+                       asp-action="Index"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="save-stage-btn">
+
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"></path>
+                            <path d="M17 21v-8H7v8"></path>
+                            <path d="M7 3v5h8"></path>
+                        </svg>
+
+                        <span>Save Stage</span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* =========================================================
+       PAGE
+       ========================================================= */
+
+    .create-stage-page {
+        min-height: 100vh;
+        padding: 60px 25px;
+
+        background:
+            radial-gradient(
+                circle at 15% 15%,
+                rgba(45, 212, 191, 0.08),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 85% 85%,
+                rgba(59, 130, 246, 0.07),
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #0b1117 0%,
+                #101820 45%,
+                #0c131a 100%
+            );
+
+        color: #e5e7eb;
+    }
+
+
+    /* =========================================================
+       CONTAINER
+       ========================================================= */
+
+    .create-stage-container {
+        width: 100%;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .create-stage-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        margin-bottom: 28px;
+    }
+
+
+    .create-stage-logo {
+        width: 58px;
+        height: 58px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 16px;
+
+        background: linear-gradient(
+            145deg,
+            #1f9d8b,
+            #14796e
+        );
+
+        border: 1px solid rgba(94, 234, 212, 0.18);
+
+        color: #ecfeff;
+
+        font-size: 19px;
+        font-weight: 700;
+
+        letter-spacing: .5px;
+
+        box-shadow:
+            0 10px 25px rgba(20, 121, 110, .22),
+            inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+
+    .create-stage-header h1 {
+        margin: 0;
+
+        color: #f1f5f9;
+
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+
+    .create-stage-header p {
+        margin: 5px 0 0;
+
+        color: #8d9aa8;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================================================
+       CARD
+       ========================================================= */
+
+    .create-stage-card {
+        padding: 32px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(25, 34, 43, .97),
+                rgba(15, 23, 31, .98)
+            );
+
+        border: 1px solid rgba(148, 163, 184, .12);
+
+        box-shadow:
+            0 25px 55px rgba(0,0,0,.35),
+            0 6px 18px rgba(0,0,0,.18);
+
+        backdrop-filter: blur(18px);
+    }
+
+
+    /* =========================================================
+       FORM
+       ========================================================= */
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+
+    .form-group label {
+        display: block;
+
+        margin-bottom: 10px;
+
+        color: #dbeafe;
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    .stage-input {
+        width: 100%;
+        height: 52px;
+
+        padding: 0 16px;
+
+        border-radius: 11px;
+
+        border: 1px solid rgba(148, 163, 184, .20);
+
+        background: rgba(7, 13, 19, .75);
+
+        color: #f8fafc;
+
+        font-size: 15px;
+
+        outline: none;
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+
+    .stage-input::placeholder {
+        color: #64748b;
+    }
+
+
+    .stage-input:focus {
+        border-color: rgba(45, 212, 191, .60);
+
+        background: rgba(7, 13, 19, .95);
+
+        box-shadow:
+            0 0 0 3px rgba(45, 212, 191, .08);
+    }
+
+
+    /* =========================================================
+       VALIDATION
+       ========================================================= */
+
+    .validation-message {
+        display: block;
+
+        margin-top: 7px;
+
+        color: #f87171;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+
+    .form-actions {
+        display: flex;
+
+        justify-content: flex-end;
+
+        gap: 12px;
+    }
+
+
+    .cancel-btn,
+    .save-stage-btn {
+        height: 44px;
+
+        padding: 0 20px;
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        transition:
+            transform .2s ease,
+            background .2s ease,
+            border-color .2s ease,
+            box-shadow .2s ease;
+    }
+
+
+    /* CANCEL */
+
+    .cancel-btn {
+        color: #cbd5e1;
+
+        background: rgba(148, 163, 184, .07);
+
+        border: 1px solid rgba(148, 163, 184, .18);
+    }
+
+
+    .cancel-btn:hover {
+        color: #f8fafc;
+
+        background: rgba(148, 163, 184, .12);
+
+        border-color: rgba(148, 163, 184, .30);
+
+        text-decoration: none;
+
+        transform: translateY(-2px);
+    }
+
+
+    /* SAVE */
+
+    .save-stage-btn {
+        color: #ecfeff;
+
+        background: linear-gradient(
+            145deg,
+            #1f9d8b,
+            #14796e
+        );
+
+        border: 1px solid rgba(94, 234, 212, .20);
+
+        box-shadow:
+            0 8px 20px rgba(20, 121, 110, .20);
+    }
+
+
+    .save-stage-btn:hover {
+        background: linear-gradient(
+            145deg,
+            #24ad99,
+            #178477
+        );
+
+        box-shadow:
+            0 12px 25px rgba(20, 121, 110, .30);
+
+        transform: translateY(-2px);
+    }
+
+
+    .save-stage-btn:active {
+        transform: translateY(0) scale(.98);
+    }
+
+
+    /* SAVE ICON */
+
+    .save-stage-btn svg {
+        width: 17px;
+        height: 17px;
+
+        fill: none;
+
+        stroke: currentColor;
+
+        stroke-width: 1.8;
+
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @@media (max-width: 600px) {
+
+        .create-stage-page {
+            padding: 35px 18px;
+        }
+
+        .create-stage-card {
+            padding: 24px 20px;
+        }
+
+        .create-stage-header h1 {
+            font-size: 23px;
+        }
+
+        .form-actions {
+            flex-direction: column-reverse;
+        }
+
+        .cancel-btn,
+        .save-stage-btn {
+            width: 100%;
+        }
+    }
+
+</style>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

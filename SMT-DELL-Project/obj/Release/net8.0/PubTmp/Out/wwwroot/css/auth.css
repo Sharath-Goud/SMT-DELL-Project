@@ -1,0 +1,526 @@
+﻿/* ============================================================
+   SMT DELL PROJECT - AUTHENTICATION UI
+   Modern Graphite + Muted Teal Theme
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Inter, Arial, sans-serif;
+    background: radial-gradient( circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 30% ), radial-gradient( circle at 85% 85%, rgba(59, 130, 246, 0.07), transparent 30% ), linear-gradient( 135deg, #0b1117 0%, #101820 45%, #0c131a 100% );
+    color: #e5e7eb;
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+.auth-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+    /* ============================================================
+   BACKGROUND DECORATION
+   ============================================================ */
+
+    .auth-page::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        top: -180px;
+        left: -160px;
+        border-radius: 50%;
+        background: rgba(45, 212, 191, 0.045);
+        filter: blur(2px);
+        pointer-events: none;
+    }
+
+    .auth-page::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        right: -220px;
+        bottom: -240px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.04);
+        pointer-events: none;
+    }
+
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.auth-card {
+    width: 100%;
+    max-width: 470px;
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    background: linear-gradient( 145deg, rgba(25, 34, 43, 0.97), rgba(15, 23, 31, 0.98) );
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42), 0 8px 25px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.login-card {
+    max-width: 450px;
+}
+
+
+/* ============================================================
+   TOP CARD LINE
+   ============================================================ */
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 34px;
+    right: 34px;
+    height: 1px;
+    background: linear-gradient( 90deg, transparent, rgba(45, 212, 191, 0.55), transparent );
+}
+
+
+/* ============================================================
+   BRAND
+   ============================================================ */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 34px;
+}
+
+.brand-logo {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: linear-gradient( 145deg, #1f9d8b, #14796e );
+    border: 1px solid rgba(94, 234, 212, 0.18);
+    color: #ecfeff;
+    font-size: 25px;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(20, 121, 110, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: #f1f5f9;
+}
+
+.brand-text p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #8d9aa8;
+    letter-spacing: 0.2px;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.auth-header {
+    margin-bottom: 28px;
+}
+
+    .auth-header h2 {
+        margin: 0 0 8px;
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: #f8fafc;
+    }
+
+    .auth-header p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #8d9aa8;
+    }
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #cbd5e1;
+        letter-spacing: 0.15px;
+    }
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.form-control {
+    width: 100%;
+    height: 49px;
+    padding: 0 15px;
+    border: 1px solid #2c3946;
+    border-radius: 11px;
+    background: #111a23;
+    color: #e5e7eb;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+    .form-control:hover {
+        border-color: #3b4b5b;
+        background: #131e28;
+    }
+
+    .form-control:focus {
+        border-color: #2bb7a5;
+        background: #111b24;
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.09), 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .form-control::placeholder {
+        color: #657383;
+    }
+
+    .form-control:focus::placeholder {
+        color: #718096;
+    }
+
+
+    /* ============================================================
+   AUTOFILL
+   ============================================================ */
+
+    .form-control:-webkit-autofill,
+    .form-control:-webkit-autofill:hover,
+    .form-control:-webkit-autofill:focus {
+        -webkit-text-fill-color: #e5e7eb;
+        -webkit-box-shadow: 0 0 0 1000px #111a23 inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+
+/* ============================================================
+   PRIMARY BUTTON
+   ============================================================ */
+
+.btn-primary {
+    width: 100%;
+    height: 49px;
+    margin-top: 2px;
+    border: 1px solid rgba(94, 234, 212, 0.15);
+    border-radius: 11px;
+    background: linear-gradient( 135deg, #1f9d8b, #16796e );
+    color: #f0fdfa;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: 0.15px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(20, 121, 110, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+        box-shadow: 0 12px 26px rgba(20, 121, 110, 0.23), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 5px 12px rgba(20, 121, 110, 0.16);
+    }
+
+    .btn-primary:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.13), 0 8px 20px rgba(20, 121, 110, 0.20);
+    }
+
+
+/* ============================================================
+   REMEMBER ME
+   ============================================================ */
+
+.remember-row {
+    margin-top: -1px;
+    margin-bottom: 21px;
+}
+
+.remember-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #8997a6;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .remember-label input {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        accent-color: #27a99a;
+        cursor: pointer;
+    }
+
+    .remember-label span {
+        transition: color 0.2s ease;
+    }
+
+    .remember-label:hover span {
+        color: #b8c4cf;
+    }
+
+
+/* ============================================================
+   VALIDATION
+   ============================================================ */
+
+.validation-message {
+    display: block;
+    margin-top: 6px;
+    color: #f38b8b;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.validation-summary {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    border: 1px solid rgba(248, 113, 113, 0.15);
+    border-radius: 10px;
+    background: rgba(127, 29, 29, 0.16);
+    color: #fca5a5;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+    .validation-summary:empty {
+        display: none;
+    }
+
+    .validation-summary ul {
+        margin: 0;
+        padding-left: 18px;
+    }
+
+    .validation-summary li {
+        margin-bottom: 2px;
+    }
+
+        .validation-summary li:last-child {
+            margin-bottom: 0;
+        }
+
+
+/* ============================================================
+   SUCCESS MESSAGE
+   ============================================================ */
+
+.success-message {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    border: 1px solid rgba(52, 211, 153, 0.16);
+    border-radius: 10px;
+    background: rgba(6, 78, 59, 0.18);
+    color: #86efac;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   BOTTOM LINK
+   ============================================================ */
+
+.bottom-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 25px;
+    color: #7f8d9b;
+    font-size: 13px;
+}
+
+    .bottom-link a {
+        color: #4fd1c5;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+        .bottom-link a:hover {
+            color: #7ce7dd;
+            text-decoration: none;
+        }
+
+
+/* ============================================================
+   FORM VALIDATION INPUT STATE
+   ============================================================ */
+
+.input-validation-error {
+    border-color: rgba(248, 113, 113, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.06);
+}
+
+    .input-validation-error:focus {
+        border-color: #ef7777 !important;
+        box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.08);
+    }
+
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+
+::selection {
+    background: rgba(45, 212, 191, 0.25);
+    color: #f8fafc;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+    .auth-page {
+        padding: 24px 14px;
+    }
+
+    .auth-card {
+        max-width: 100%;
+        padding: 30px 22px;
+        border-radius: 18px;
+    }
+
+        .auth-card::before {
+            left: 22px;
+            right: 22px;
+        }
+
+    .brand {
+        margin-bottom: 28px;
+    }
+
+    .brand-logo {
+        width: 49px;
+        height: 49px;
+        border-radius: 13px;
+        font-size: 22px;
+    }
+
+    .brand-text h1 {
+        font-size: 18px;
+    }
+
+    .auth-header h2 {
+        font-size: 25px;
+    }
+
+    .auth-header p {
+        font-size: 13px;
+    }
+
+    .form-control,
+    .btn-primary {
+        height: 48px;
+    }
+
+    .bottom-link {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+    .auth-page {
+        padding: 15px 10px;
+    }
+
+    .auth-card {
+        padding: 25px 18px;
+    }
+
+    .brand {
+        gap: 11px;
+    }
+
+    .auth-header h2 {
+        font-size: 23px;
+    }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}

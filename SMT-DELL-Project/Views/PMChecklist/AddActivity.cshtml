@@ -1,0 +1,415 @@
+﻿@model SMT_DELL_Project.Models.PMActivity
+
+@{
+    ViewData["Title"] = "Add Activity";
+}
+
+<div class="activity-page">
+
+    <div class="activity-container">
+
+        <!-- HEADER -->
+        <div class="activity-header">
+
+            <div class="activity-logo">
+                SMT
+            </div>
+
+            <div class="activity-title">
+
+                <h1>
+                    @ViewBag.StageName - PM Activities
+                </h1>
+
+                <p>
+                    Add New Activity
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CARD -->
+        <div class="activity-card">
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+                    +
+                </div>
+
+                <div>
+
+                    <h2>
+                        Add Activity
+                    </h2>
+
+                    <p>
+                        Add a new PM activity for
+                        <strong>@ViewBag.StageName</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form asp-controller="PMChecklist"
+                  asp-action="AddActivity"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- Keep StageId -->
+                <input type="hidden"
+                       asp-for="StageId" />
+
+
+                <!-- ACTIVITY NAME -->
+                <div class="form-group">
+
+                    <label asp-for="ActivityName">
+                        Activity Name
+                    </label>
+
+                    <input asp-for="ActivityName"
+                           class="activity-input"
+                           placeholder="Enter activity name"
+                           autocomplete="off"
+                           autofocus />
+
+                    <span asp-validation-for="ActivityName"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="form-actions">
+
+                    <a asp-controller="PMChecklist"
+                       asp-action="Index"
+                       asp-route-stageId="@Model.StageId"
+                       class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="add-btn">
+
+                        <span class="button-plus">
+                            +
+                        </span>
+
+                        Add Activity
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* =========================================================
+           PAGE
+           ========================================================= */
+
+    .activity-page {
+        min-height: 100vh;
+        padding: 45px 25px;
+        background: radial-gradient( circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 30% ), radial-gradient( circle at 85% 85%, rgba(59, 130, 246, 0.07), transparent 30% ), linear-gradient( 135deg, #0b1117 0%, #101820 45%, #0c131a 100% );
+        color: #e5e7eb;
+    }
+
+
+    /* =========================================================
+           CONTAINER
+           ========================================================= */
+
+    .activity-container {
+        width: 100%;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           HEADER
+           ========================================================= */
+
+    .activity-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+
+    .activity-logo {
+        width: 58px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 19px;
+        font-weight: 700;
+        box-shadow: 0 8px 20px rgba( 20, 121, 110, 0.25 );
+    }
+
+
+    .activity-title h1 {
+        margin: 0;
+        color: #f1f5f9;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+
+    .activity-title p {
+        margin: 5px 0 0;
+        color: #8d9aa8;
+        font-size: 14px;
+    }
+
+
+    /* =========================================================
+           CARD
+           ========================================================= */
+
+    .activity-card {
+        width: 100%;
+        padding: 35px;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.97), rgba(15, 23, 31, 0.98) );
+        border: 1px solid rgba( 148, 163, 184, 0.12 );
+        box-shadow: 0 20px 45px rgba( 0, 0, 0, 0.30 );
+    }
+
+
+    /* =========================================================
+           HEADING
+           ========================================================= */
+
+    .card-heading {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid rgba( 148, 163, 184, 0.10 );
+    }
+
+
+    .heading-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba( 45, 212, 191, 0.10 );
+        color: #4fd1c5;
+        font-size: 28px;
+        font-weight: 300;
+    }
+
+
+    .card-heading h2 {
+        margin: 0;
+        color: #f1f5f9;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+
+    .card-heading p {
+        margin: 5px 0 0;
+        color: #7f8b99;
+        font-size: 13px;
+    }
+
+
+    .card-heading strong {
+        color: #4fd1c5;
+    }
+
+
+    /* =========================================================
+           FORM
+           ========================================================= */
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+    .activity-input {
+        width: 100%;
+        height: 48px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba( 148, 163, 184, 0.18 );
+        background: rgba( 7, 13, 19, 0.75 );
+        color: #f8fafc;
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        .activity-input:focus {
+            border-color: rgba( 45, 212, 191, 0.60 );
+            box-shadow: 0 0 0 3px rgba( 45, 212, 191, 0.07 );
+        }
+
+
+        .activity-input::placeholder {
+            color: #64748b;
+        }
+
+
+    /* =========================================================
+           VALIDATION
+           ========================================================= */
+
+    .validation-message {
+        display: block;
+        margin-top: 7px;
+        color: #f87171;
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+           BUTTONS
+           ========================================================= */
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid rgba( 148, 163, 184, 0.08 );
+    }
+
+
+    .cancel-btn {
+        min-width: 110px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 18px;
+        border-radius: 10px;
+        border: 1px solid rgba( 148, 163, 184, 0.18 );
+        background: rgba( 148, 163, 184, 0.05 );
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+
+        .cancel-btn:hover {
+            color: #ffffff;
+            background: rgba( 148, 163, 184, 0.10 );
+            border-color: rgba( 148, 163, 184, 0.30 );
+        }
+
+
+    .add-btn {
+        min-width: 150px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 9px 18px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba( 20, 121, 110, 0.18 );
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        .add-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba( 20, 121, 110, 0.30 );
+        }
+
+
+    .button-plus {
+        font-size: 20px;
+        line-height: 1;
+        font-weight: 400;
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 700px) {
+
+        .activity-page {
+            padding: 30px 18px;
+        }
+
+
+        .activity-card {
+            padding: 22px;
+        }
+
+
+        .activity-title h1 {
+            font-size: 22px;
+        }
+
+
+        .form-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+
+        .cancel-btn,
+        .add-btn {
+            width: 100%;
+        }
+    }
+
+</style>

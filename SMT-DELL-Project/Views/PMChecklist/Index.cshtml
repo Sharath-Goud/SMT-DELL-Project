@@ -1,0 +1,1461 @@
+﻿@model List<SMT_DELL_Project.Models.PMActivity>
+
+@{
+    ViewData["Title"] = $"{ViewBag.StageName} - PM Activities";
+}
+
+<div class="pm-page">
+
+    <div class="pm-container">
+
+        <!-- HEADER -->
+        <div class="pm-header">
+
+            <div class="pm-header-left">
+
+                <div class="pm-logo">
+                    SMT
+                </div>
+
+
+                <div class="pm-title">
+
+                    <h1>
+                        @ViewBag.StageName - @ViewBag.ChecklistName
+                    </h1>
+
+                    <p>
+                        Preventive Maintenance Checklist
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+            <div class="pm-header-action">
+
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="back-stage-btn">
+
+                    ← Back to Stages
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MAIN CARD -->
+        <div class="pm-card">
+
+            <!-- CARD TOP -->
+            <div class="pm-card-header">
+
+                <div>
+                    
+                </div>
+
+
+                <!-- ADD ACTIVITY -->
+                <a asp-controller="PMChecklist"
+                   asp-action="AddActivity"
+                   asp-route-stageId="@ViewBag.StageId"
+                   class="add-activity-btn">
+
+                    <span class="plus-icon">+</span>
+
+                    Add Activity
+
+                </a>
+
+            </div>
+
+
+            <!-- SUCCESS MESSAGE -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+
+                    <span class="success-icon">✓</span>
+
+                    @TempData["SuccessMessage"]
+
+                </div>
+            }
+
+
+            <!-- CHECKLIST FORM -->
+            <!-- CHECKLIST FORM -->
+            <form asp-controller="PMChecklist"
+                  asp-action="SaveChecklist"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- Stage ID -->
+                <input type="hidden"
+                       name="stageId"
+                       value="@ViewBag.StageId" />
+
+
+                <!-- TABLE -->
+                <div class="table-wrapper">
+
+                    <table class="pm-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Activity
+                                </th>
+
+                                <th class="status-header">
+                                    Working
+                                </th>
+
+                                <th class="status-header">
+                                    Not Working
+                                </th>
+
+                                <th>
+                                    Remarks
+                                </th>
+
+                                <th class="actions-header">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var activity in Model)
+                                {
+                                    <tr>
+
+                                        <!-- ACTIVITY NAME -->
+                                        <td class="activity-name">
+
+                                            @activity.ActivityName
+
+                                        </td>
+
+
+                                        <!-- WORKING -->
+                                        <td class="status-cell">
+
+                                            <input type="radio"
+                                                   name="status[@activity.Id]"
+                                                   value="Working"
+                                                   required />
+
+                                        </td>
+
+
+                                        <!-- NOT WORKING -->
+                                        <td class="status-cell">
+
+                                            <input type="radio"
+                                                   name="status[@activity.Id]"
+                                                   value="Not Working" />
+
+                                        </td>
+
+
+                                        <!-- REMARKS -->
+                                        <td>
+
+                                            <input type="text"
+                                                   name="remarks[@activity.Id]"
+                                                   class="remarks-input"
+                                                   placeholder="Enter remarks"
+                                                   maxlength="500" />
+
+                                        </td>
+
+
+                                        <!-- ACTIONS -->
+                                        <td class="activity-actions">
+
+                                            <!-- EDIT -->
+                                            <a asp-controller="PMChecklist"
+                                               asp-action="EditActivity"
+                                               asp-route-id="@activity.Id"
+                                               class="activity-edit-btn"
+                                               title="Edit Activity"
+                                               onclick="event.stopPropagation();">
+
+                                                ✏
+
+                                            </a>
+
+
+                                            <!-- DELETE -->
+                                            <a asp-controller="PMChecklist"
+                                               asp-action="DeleteActivity"
+                                               asp-route-id="@activity.Id"
+                                               class="activity-delete-btn"
+                                               title="Delete Activity"
+                                               onclick="event.stopPropagation();">
+
+                                                🗑
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+
+                                    <td colspan="5"
+                                        class="no-activities">
+
+                                        <div class="empty-icon">
+                                            +
+                                        </div>
+
+                                        <div class="empty-title">
+                                            No Activities Added
+                                        </div>
+
+                                        <div class="empty-text">
+                                            Click "Add Activity" to create the first PM activity for this stage.
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- FOOTER -->
+                <div class="pm-footer">
+
+                    <button type="submit"
+                            class="save-checklist-btn">
+
+                        Save Checklist
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            @{
+                int currentPage = ViewBag.CurrentPage;
+                int pageSize = ViewBag.PageSize;
+                int totalRecords = ViewBag.TotalRecords;
+
+                int showingFrom =
+                totalRecords == 0
+                ? 0
+                : ((currentPage - 1) * pageSize) + 1;
+
+                int showingTo =
+                Math.Min(
+                currentPage * pageSize,
+                totalRecords);
+            }
+
+            <div class="result-pagination-info">
+                <span>
+                    Showing
+                    <strong>@showingFrom</strong>
+                    -
+                    <strong>@showingTo</strong>
+                    of
+                    <strong>@totalRecords</strong>
+                    records
+                </span>
+            </div>
+
+            @{
+                var submittedChecklist =
+                ViewBag.SubmittedChecklist
+                as List<SMT_DELL_Project.Models.PMChecklist>;
+            }
+
+            @if (submittedChecklist != null && submittedChecklist.Any())
+            {
+                <div class="submitted-result-card">
+
+                    <!-- RESULT HEADER -->
+                    <div class="submitted-result-header">
+
+                        <div>
+                            <h2>
+                                Completed Checklist Result
+                            </h2>
+
+                            <p>
+                                @ViewBag.StageName - PM Activities
+                            </p>
+                            <div class="result-count">
+                                @ViewBag.TotalRecords completed records
+                            </div>
+                        </div>
+
+                        <div class="completed-badge">
+                            ✓ Completed
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULT TABLE -->
+                    <div class="table-wrapper">
+
+                        <table class="submitted-result-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th class="result-number-header">
+                                        #
+                                    </th>
+
+                                    <th>
+                                        Activity
+                                    </th>
+
+                                    <th>
+                                        Result
+                                    </th>
+
+                                    <th>
+                                        Remarks
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                @{
+                                    int resultNumber =
+                                    ((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1;
+                                }
+
+                                @foreach (var result in submittedChecklist)
+                                {
+                                    <tr>
+
+                                        <td class="result-number">
+                                            @resultNumber
+                                        </td>
+
+
+                                        <td class="result-activity">
+                                            @result.Activity?.ActivityName
+                                        </td>
+
+
+                                        <td>
+
+                                            @if (result.Status == "Working")
+                                            {
+                                                <span class="status-working">
+                                                    ✓ Working
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="status-not-working">
+                                                    ✕ Not Working
+                                                </span>
+                                            }
+
+                                        </td>
+
+
+                                        <td class="result-remarks">
+
+                                            @if (string.IsNullOrWhiteSpace(result.Remarks))
+                                            {
+                                                <span class="no-remarks">
+                                                    —
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                @result.Remarks
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                    resultNumber++;
+                                }
+
+                            </tbody>
+
+                        </table>
+                        @if (ViewBag.TotalPages > 1)
+                        {
+                            <div class="result-pagination">
+
+                                <!-- PREVIOUS -->
+                                @if (ViewBag.CurrentPage > 1)
+                                {
+                                    <a class="pagination-btn"
+                                       asp-controller="PMChecklist"
+                                       asp-action="Index"
+                                       asp-route-stageId="@ViewBag.StageId"
+                                       asp-route-page="@(ViewBag.CurrentPage - 1)">
+                                        ‹ Previous
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="pagination-btn disabled">
+                                        ‹ Previous
+                                    </span>
+                                }
+
+
+                                <!-- PAGE NUMBERS -->
+
+                                <div class="pagination-pages">
+
+                                    @{
+                                        int totalPages = ViewBag.TotalPages;
+
+                                        int startPage = Math.Max(1, currentPage - 2);
+                                        int endPage = Math.Min(totalPages, currentPage + 2);
+                                    }
+
+
+                                    @if (startPage > 1)
+                                    {
+                                        <a class="pagination-number"
+                                           asp-controller="PMChecklist"
+                                           asp-action="Index"
+                                           asp-route-stageId="@ViewBag.StageId"
+                                           asp-route-page="1">
+                                            1
+                                        </a>
+
+                                        @if (startPage > 2)
+                                        {
+                                            <span class="pagination-dots">
+                                                ...
+                                            </span>
+                                        }
+                                    }
+
+
+                                    @for (int i = startPage; i <= endPage; i++)
+                                    {
+                                        if (i == currentPage)
+                                        {
+                                            <span class="pagination-number active">
+                                                @i
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <a class="pagination-number"
+                                               asp-controller="PMChecklist"
+                                               asp-action="Index"
+                                               asp-route-stageId="@ViewBag.StageId"
+                                               asp-route-page="@i">
+                                                @i
+                                            </a>
+                                        }
+                                    }
+
+
+                                    @if (endPage < totalPages)
+                                    {
+                                        @if (endPage < totalPages - 1)
+                                        {
+                                            <span class="pagination-dots">
+                                                ...
+                                            </span>
+                                        }
+
+                                        <a class="pagination-number"
+                                           asp-controller="PMChecklist"
+                                           asp-action="Index"
+                                           asp-route-stageId="@ViewBag.StageId"
+                                           asp-route-page="@totalPages">
+                                            @totalPages
+                                        </a>
+                                    }
+
+                                </div>
+
+
+                                <!-- NEXT -->
+                                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                                {
+                                    <a class="pagination-btn"
+                                       asp-controller="PMChecklist"
+                                       asp-action="Index"
+                                       asp-route-stageId="@ViewBag.StageId"
+                                       asp-route-page="@(ViewBag.CurrentPage + 1)">
+                                        Next ›
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="pagination-btn disabled">
+                                        Next ›
+                                    </span>
+                                }
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* =========================================================
+           PAGE
+           ========================================================= */
+
+    .pm-page {
+        min-height: 100vh;
+        padding: 45px 25px;
+        background: radial-gradient( circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 30% ), radial-gradient( circle at 85% 85%, rgba(59, 130, 246, 0.07), transparent 30% ), linear-gradient( 135deg, #0b1117 0%, #101820 45%, #0c131a 100% );
+        color: #e5e7eb;
+    }
+
+
+    /* =========================================================
+           CONTAINER
+           ========================================================= */
+
+    .pm-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           HEADER
+           ========================================================= */
+
+    .pm-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+
+    .pm-logo {
+        width: 58px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 19px;
+        font-weight: 700;
+        box-shadow: 0 8px 20px rgba(20, 121, 110, 0.25);
+    }
+
+
+    .pm-title h1 {
+        margin: 0;
+        color: #f1f5f9;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+
+    .pm-title p {
+        margin: 5px 0 0;
+        color: #8d9aa8;
+        font-size: 14px;
+    }
+
+
+    /* =========================================================
+           CARD
+           ========================================================= */
+
+    .pm-card {
+        width: 90%;
+        padding: 30px;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.97), rgba(15, 23, 31, 0.98) );
+        border: 1px solid rgba( 148, 163, 184, 0.12 );
+        box-shadow: 0 20px 45px rgba( 0, 0, 0, 0.30 );
+    }
+
+
+    /* =========================================================
+           CARD HEADER
+           ========================================================= */
+
+    .pm-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+
+    .checklist-name {
+        color: #cbd5e1;
+        font-size: 15px;
+    }
+
+
+        .checklist-name strong {
+            color: #4fd1c5;
+            margin-left: 5px;
+        }
+
+
+    /* =========================================================
+           ADD ACTIVITY BUTTON
+           ========================================================= */
+
+    .add-activity-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 155px;
+        height: 44px;
+        padding: 9px 18px;
+        border-radius: 10px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 8px 18px rgba( 20, 121, 110, 0.18 );
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        .add-activity-btn:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba( 20, 121, 110, 0.30 );
+        }
+
+
+    .plus-icon {
+        font-size: 22px;
+        line-height: 1;
+        font-weight: 400;
+    }
+
+
+    /* =========================================================
+           SUCCESS MESSAGE
+           ========================================================= */
+
+    .success-message {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        border-radius: 9px;
+        background: rgba( 34, 197, 94, 0.10 );
+        border: 1px solid rgba( 34, 197, 94, 0.20 );
+        color: #86efac;
+        font-size: 14px;
+    }
+
+
+    .success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba( 34, 197, 94, 0.18 );
+        font-weight: 700;
+    }
+
+
+    /* =========================================================
+           TABLE
+           ========================================================= */
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+
+    .pm-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba( 148, 163, 184, 0.12 );
+    }
+
+
+        .pm-table th {
+            padding: 15px;
+            background: rgba( 7, 13, 19, 0.80 );
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 1px solid rgba( 148, 163, 184, 0.12 );
+        }
+
+
+        .pm-table td {
+            padding: 15px;
+            color: #dbe4ec;
+            font-size: 14px;
+            border-bottom: 1px solid rgba( 148, 163, 184, 0.08 );
+            vertical-align: middle;
+        }
+
+
+        .pm-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .pm-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+
+            .pm-table tbody tr:hover {
+                background: rgba( 45, 212, 191, 0.045 );
+            }
+
+
+    /* =========================================================
+           ACTIVITY
+           ========================================================= */
+
+    .activity-name {
+        min-width: 220px;
+        color: #f8fafc !important;
+        font-weight: 600;
+    }
+
+
+    /* =========================================================
+           STATUS
+           ========================================================= */
+
+    .status-header {
+        text-align: center !important;
+    }
+
+
+    .status-cell {
+        width: 120px;
+        text-align: center;
+    }
+
+
+        .status-cell input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #2dd4bf;
+        }
+
+
+    /* =========================================================
+           REMARKS
+           ========================================================= */
+
+    .remarks-input {
+        width: 100%;
+        min-width: 220px;
+        height: 40px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba( 148, 163, 184, 0.16 );
+        background: rgba( 7, 13, 19, 0.75 );
+        color: #f8fafc;
+        outline: none;
+    }
+
+
+        .remarks-input:focus {
+            border-color: rgba( 45, 212, 191, 0.55 );
+            box-shadow: 0 0 0 3px rgba( 45, 212, 191, 0.06 );
+        }
+
+
+        .remarks-input::placeholder {
+            color: #64748b;
+        }
+
+
+    /* =========================================================
+           ACTIONS
+           ========================================================= */
+
+    .actions-header {
+        width: 120px;
+        text-align: center !important;
+    }
+
+
+    .activity-actions {
+        width: 120px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+
+    .activity-edit-btn,
+    .activity-delete-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        margin: 0 3px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+
+    .activity-edit-btn {
+        color: #5eead4;
+        background: rgba( 45, 212, 191, 0.08 );
+    }
+
+
+        .activity-edit-btn:hover {
+            color: #99f6e4;
+            background: rgba( 45, 212, 191, 0.16 );
+            transform: translateY(-1px);
+        }
+
+
+    .activity-delete-btn {
+        color: #f87171;
+        background: rgba( 248, 113, 113, 0.08 );
+    }
+
+
+        .activity-delete-btn:hover {
+            color: #fca5a5;
+            background: rgba( 248, 113, 113, 0.16 );
+            transform: translateY(-1px);
+        }
+
+
+    /* =========================================================
+           NO ACTIVITIES
+           ========================================================= */
+
+    .no-activities {
+        padding: 55px 20px !important;
+        text-align: center;
+        color: #64748b !important;
+    }
+
+
+    .empty-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: rgba( 45, 212, 191, 0.08 );
+        color: #4fd1c5;
+        font-size: 30px;
+        font-weight: 300;
+    }
+
+
+    .empty-title {
+        color: #cbd5e1;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+
+    .empty-text {
+        color: #64748b;
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+           FOOTER
+           ========================================================= */
+
+    .pm-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid rgba( 148, 163, 184, 0.08 );
+    }
+
+
+    /* =========================================================
+           SAVE BUTTON
+           ========================================================= */
+
+    .save-checklist-btn {
+        min-width: 160px;
+        height: 46px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        .save-checklist-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba( 20, 121, 110, 0.25 );
+        }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 700px) {
+
+        .pm-page {
+            padding: 30px 18px;
+        }
+
+
+        .pm-card {
+            padding: 20px;
+        }
+
+
+        .pm-header {
+            margin-bottom: 22px;
+        }
+
+
+        .pm-title h1 {
+            font-size: 22px;
+        }
+
+
+        .pm-card-header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+
+        .add-activity-btn {
+            width: 100%;
+        }
+
+
+        .pm-footer {
+            justify-content: stretch;
+        }
+
+
+        .save-checklist-btn {
+            width: 100%;
+        }
+    }
+
+    /* =========================================================
+       COMPLETED CHECKLIST RESULT
+       ========================================================= */
+
+    .submitted-result-card {
+        margin-top: 35px;
+        padding: 28px;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.98), rgba(15, 23, 31, 0.98) );
+        border: 1px solid rgba(45, 212, 191, 0.18);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    }
+
+
+    /* HEADER */
+
+    .submitted-result-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 22px;
+    }
+
+
+        .submitted-result-header h2 {
+            margin: 0;
+            color: #f1f5f9;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+
+        .submitted-result-header p {
+            margin: 6px 0 0;
+            color: #8d9aa8;
+            font-size: 13px;
+        }
+
+
+    /* COMPLETED BADGE */
+
+    .completed-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        border-radius: 20px;
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid rgba(34, 197, 94, 0.22);
+        color: #86efac;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+    /* INFORMATION */
+
+    .submitted-info {
+        display: flex;
+        gap: 50px;
+        margin-bottom: 20px;
+        padding: 15px 18px;
+        border-radius: 10px;
+        background: rgba(7, 13, 19, 0.55);
+        border: 1px solid rgba( 148, 163, 184, 0.10 );
+    }
+
+
+    .submitted-info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+
+        .submitted-info-item span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        .submitted-info-item strong {
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+
+
+    /* RESULT TABLE */
+
+    .submitted-result-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid rgba( 148, 163, 184, 0.12 );
+    }
+
+
+        .submitted-result-table th {
+            padding: 15px;
+            background: rgba( 7, 13, 19, 0.85 );
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 1px solid rgba( 148, 163, 184, 0.12 );
+        }
+
+
+        .submitted-result-table td {
+            padding: 15px;
+            color: #dbe4ec;
+            font-size: 14px;
+            border-bottom: 1px solid rgba( 148, 163, 184, 0.08 );
+            vertical-align: middle;
+        }
+
+
+        .submitted-result-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .submitted-result-table tbody tr:hover {
+            background: rgba( 45, 212, 191, 0.045 );
+        }
+
+
+    /* NUMBER */
+
+    .result-number-header {
+        width: 60px;
+        text-align: center !important;
+    }
+
+
+    .result-number {
+        width: 60px;
+        text-align: center;
+        color: #64748b !important;
+        font-weight: 600;
+    }
+
+
+    /* ACTIVITY */
+
+    .result-activity {
+        min-width: 250px;
+        color: #f8fafc !important;
+        font-weight: 600;
+    }
+
+
+    /* REMARKS */
+
+    .result-remarks {
+        min-width: 250px;
+        color: #cbd5e1 !important;
+        line-height: 1.5;
+    }
+
+
+    .no-remarks {
+        color: #64748b;
+    }
+
+
+    /* WORKING */
+
+    .status-working {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 12px;
+        border-radius: 7px;
+        background: rgba( 34, 197, 94, 0.10 );
+        border: 1px solid rgba( 34, 197, 94, 0.18 );
+        color: #86efac;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+    /* NOT WORKING */
+
+    .status-not-working {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 12px;
+        border-radius: 7px;
+        background: rgba( 248, 113, 113, 0.10 );
+        border: 1px solid rgba( 248, 113, 113, 0.18 );
+        color: #fca5a5;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+    /* MOBILE */
+
+    @@media (max-width: 700px) {
+        .submitted-result-card
+
+    {
+        padding: 20px;
+    }
+
+    .submitted-result-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .submitted-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    }
+
+    /* =========================================================
+       RESULT COUNT
+       ========================================================= */
+
+    .result-count {
+        margin-top: 8px;
+        color: #64748b;
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+       PAGINATION INFORMATION
+       ========================================================= */
+
+    .result-pagination-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 18px;
+        margin-bottom: 12px;
+        color: #64748b;
+        font-size: 13px;
+    }
+
+        .result-pagination-info strong {
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+
+    /* =========================================================
+       PAGINATION
+       ========================================================= */
+
+    .result-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba( 148, 163, 184, 0.08 );
+    }
+
+
+    .pagination-pages {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+    /* =========================================================
+       PREVIOUS / NEXT
+       ========================================================= */
+
+    .pagination-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 92px;
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        background: rgba( 45, 212, 191, 0.08 );
+        border: 1px solid rgba( 45, 212, 191, 0.15 );
+        color: #5eead4;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+
+        .pagination-btn:hover {
+            color: #99f6e4;
+            background: rgba( 45, 212, 191, 0.14 );
+            border-color: rgba( 45, 212, 191, 0.25 );
+            transform: translateY(-1px);
+        }
+
+
+        .pagination-btn.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+
+    /* =========================================================
+       PAGE NUMBERS
+       ========================================================= */
+
+    .pagination-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba( 148, 163, 184, 0.05 );
+        border: 1px solid rgba( 148, 163, 184, 0.10 );
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+
+        .pagination-number:hover {
+            color: #e2e8f0;
+            background: rgba( 45, 212, 191, 0.08 );
+            border-color: rgba( 45, 212, 191, 0.18 );
+        }
+
+
+        .pagination-number.active {
+            background: linear-gradient( 145deg, #1f9d8b, #14796e );
+            border-color: #1f9d8b;
+            color: #ecfeff;
+            box-shadow: 0 5px 14px rgba( 20, 121, 110, 0.22 );
+        }
+
+
+    /* =========================================================
+       PAGINATION DOTS
+       ========================================================= */
+
+    .pagination-dots {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 36px;
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    @@media (max-width: 700px) {
+        .result-pagination
+
+    {
+        flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+        min-width: 85px;
+    }
+
+    .pagination-number {
+        width: 34px;
+        height: 34px;
+    }
+
+    .pagination-pages {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .result-pagination-info {
+        font-size: 12px;
+    }
+
+    }
+
+    /* =========================================================
+       HEADER LEFT + ACTION
+       ========================================================= */
+
+    .pm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+
+    .pm-header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+
+
+    /* =========================================================
+       BACK TO STAGES BUTTON
+       ========================================================= */
+
+    .back-stage-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+        padding: 0 18px;
+        border-radius: 10px;
+        background: rgba(45,212,191,0.10);
+        border: 1px solid rgba(45,212,191,0.25);
+        color: #5eead4;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        transition: all .2s ease;
+    }
+
+
+        .back-stage-btn:hover {
+            background: linear-gradient( 145deg, #1f9d8b, #14796e );
+            color: white;
+            transform: translateY(-1px);
+        }
+
+</style>

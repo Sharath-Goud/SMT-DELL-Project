@@ -1,0 +1,1446 @@
+﻿@model IEnumerable<SMT_DELL_Project.Models.Stage>
+
+@{
+    ViewData["Title"] = "Production Stages";
+}
+
+<div class="production-page">
+
+    <!-- Background decoration -->
+    <div class="background-orb background-orb-left"></div>
+    <div class="background-orb background-orb-right"></div>
+
+    <div class="production-container">
+
+        <!-- HEADER -->
+        <!-- HEADER -->
+        <div class="production-header">
+
+            <div class="production-topbar">
+
+                <!-- LEFT SIDE -->
+                <div class="production-brand">
+
+                    <!-- SMT LOGO -->
+                    <div class="production-logo">
+                        SMT
+                    </div>
+
+                    <!-- TITLE -->
+                    <div class="production-title">
+                        <h1>Production Stages</h1>
+                        <p>Select a stage to continue</p>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE - LOGOUT -->
+                <form asp-controller="Account"
+                      asp-action="Logout"
+                      method="post"
+                      class="logout-form">
+
+                    @Html.AntiForgeryToken()
+
+                    <button type="submit"
+                            class="logout-btn"
+                            title="Logout">
+
+                        <svg viewBox="0 0 24 24"
+                             aria-hidden="true">
+
+                            <path d="M10 17l5-5-5-5"></path>
+                            <path d="M15 12H3"></path>
+                            <path d="M21 19V5a2 2 0 0 0-2-2h-6"></path>
+
+                        </svg>
+
+                        <span>Logout</span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- HEADER LINE -->
+            <div class="header-line"></div>
+
+
+            <!-- PM REMINDER -->
+            <div class="reminder-section">
+
+                <div class="reminder-card">
+
+                    <h3>PM Reminder</h3>
+
+                    <form asp-controller="Home"
+                          asp-action="SaveReminder"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <label>
+                            Remind After Days
+                        </label>
+
+                        <div class="reminder-input-row">
+
+                            <input type="number"
+                                   name="reminderDays"
+                                   min="1"
+                                   placeholder="Enter days"
+                                   required />
+
+                            <button type="submit">
+                                Save Reminder
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="reminder-success">
+
+                            <span class="success-check">
+                                ✓
+                            </span>
+
+                            <span>
+                                @TempData["SuccessMessage"]
+                            </span>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+
+            <!-- PM REMINDER POPUP -->
+            <div id="dashboardReminderPopup"
+                 class="dashboard-reminder-popup">
+
+                <div class="popup-icon">
+                    ✓
+                </div>
+
+                <div class="popup-content">
+
+                    <div class="popup-title">
+                        PM Reminder
+                    </div>
+
+                    <div id="dashboardReminderMessage"
+                         class="popup-message">
+                    </div>
+
+                </div>
+
+                <button type="button"
+                        class="popup-close"
+                        onclick="closeReminderPopup()">
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STAGES -->
+        <div class="stage-grid">
+
+            @foreach (var stage in Model ?? Enumerable.Empty<SMT_DELL_Project.Models.Stage>())
+            {
+                <div class="stage-card-wrapper">
+
+                    <!-- STAGE CARD -->
+                    <div class="stage-card"
+                         onclick="openStage(@stage.Id, '@stage.StageName')">
+
+                        <!-- ACTION BUTTONS -->
+                        <div class="stage-actions">
+
+                            <!-- EDIT -->
+                            <a asp-controller="Home"
+                               asp-action="Edit"
+                               asp-route-id="@stage.Id"
+                               class="stage-edit-btn"
+                               title="Edit Stage"
+                               onclick="event.stopPropagation();">
+
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 20h9"></path>
+                                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                                </svg>
+
+                            </a>
+
+                            <!-- DELETE -->
+                            <a asp-controller="Home"
+                               asp-action="Delete"
+                               asp-route-id="@stage.Id"
+                               class="stage-delete-btn"
+                               title="Delete Stage"
+                               onclick="event.stopPropagation();">
+
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M9 3h6"></path>
+                                    <path d="M4 6h16"></path>
+                                    <path d="M7 6l1 14h8l1-14"></path>
+                                    <path d="M10 10v6"></path>
+                                    <path d="M14 10v6"></path>
+                                </svg>
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- STAGE NAME -->
+                        <div class="stage-content">
+
+                            <h2>
+                                @stage.StageName
+                            </h2>
+
+                        </div>
+
+
+                        <!-- FOOTER -->
+                        <div class="stage-footer">
+
+                            <span>
+                                Open Stage
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+
+            <!-- ADD STAGE -->
+            <a asp-controller="Home"
+               asp-action="Create"
+               class="add-stage-card">
+
+                <div class="add-stage-icon">
+                    +
+                </div>
+
+                <div class="add-stage-title">
+                    Add Stage
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* =========================================================
+           MAIN PAGE
+           ========================================================= */
+
+    .production-page,
+    .production-page * {
+        box-sizing: border-box;
+    }
+
+    .production-page {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient( circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 30% ), radial-gradient( circle at 85% 85%, rgba(59, 130, 246, 0.07), transparent 30% ), linear-gradient( 135deg, #0b1117 0%, #101820 45%, #0c131a 100% );
+        color: #e5e7eb;
+        padding: clamp(30px, 5vh, 55px) clamp(25px, 4vw, 60px);
+    }
+
+
+    /* =========================================================
+           BACKGROUND ORBS
+           ========================================================= */
+
+    .background-orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+
+    .background-orb-left {
+        width: 420px;
+        height: 420px;
+        top: -190px;
+        left: -170px;
+        background: rgba(45, 212, 191, 0.045);
+        filter: blur(2px);
+    }
+
+
+    .background-orb-right {
+        width: 500px;
+        height: 500px;
+        right: -230px;
+        bottom: -250px;
+        background: rgba(59, 130, 246, 0.04);
+    }
+
+
+    /* =========================================================
+           CONTAINER
+           ========================================================= */
+
+    .production-container {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+
+    /* =========================================================
+           HEADER
+           ========================================================= */
+
+    .production-header {
+        margin-bottom: 34px;
+    }
+
+
+    .production-brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: 100%;
+    }
+
+
+    /* SMT LOGO */
+
+    .production-logo {
+        width: 58px;
+        height: 58px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        border: 1px solid rgba(94, 234, 212, 0.18);
+        color: #ecfeff;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        box-shadow: 0 10px 25px rgba(20, 121, 110, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+
+    /* TITLE */
+
+    .production-title h1 {
+        margin: 0;
+        color: #f1f5f9;
+        font-size: clamp(24px, 2vw, 30px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+
+
+    .production-title p {
+        margin: 5px 0 0;
+        color: #8d9aa8;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+    }
+
+
+    /* HEADER LINE */
+
+    .header-line {
+        width: 100%;
+        height: 1px;
+        margin-top: 27px;
+        background: linear-gradient( 90deg, transparent, rgba(45, 212, 191, 0.35), rgba(148, 163, 184, 0.08), transparent );
+    }
+
+
+    /* =========================================================
+           STAGE GRID
+           ========================================================= */
+
+    .stage-grid {
+        width: 100%;
+        display: grid;
+        /*
+               4 stage cards + Add Stage card
+            */
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+
+    /* =========================================================
+           STAGE CARD WRAPPER
+           ========================================================= */
+
+    .stage-card-wrapper {
+        position: relative;
+        min-width: 0;
+    }
+
+
+    /* =========================================================
+           STAGE CARD
+           ========================================================= */
+
+    .stage-card {
+        min-width: 0;
+        min-height: 174px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 23px;
+        overflow: hidden;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.97), rgba(15, 23, 31, 0.98) );
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        color: #e5e7eb;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.30), 0 6px 18px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+
+        /* TOP TEAL LINE */
+
+        .stage-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 25px;
+            right: 25px;
+            height: 1px;
+            background: linear-gradient( 90deg, transparent, rgba(45, 212, 191, 0.55), transparent );
+        }
+
+
+        /* HOVER */
+
+        .stage-card:hover {
+            transform: translateY(-6px);
+            color: #e5e7eb;
+            text-decoration: none;
+            border-color: rgba(45, 212, 191, 0.30);
+            box-shadow: 0 28px 55px rgba(0, 0, 0, 0.40), 0 0 30px rgba(45, 212, 191, 0.06);
+        }
+
+
+    /* =========================================================
+           STAGE ACTIONS
+           ========================================================= */
+
+    .stage-actions {
+        position: absolute;
+        top: 14px;
+        right: 13px;
+        z-index: 20;
+        display: flex;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+
+    /* Show buttons when card is hovered */
+
+    .stage-card-wrapper:hover .stage-actions {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       ACTION BUTTONS
+       ========================================================= */
+
+    .stage-edit-btn,
+    .stage-delete-btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: rgba(7, 13, 19, 0.95);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        /* =========================================================
+       ICON SIZE / STYLE
+       ========================================================= */
+
+        .stage-edit-btn svg,
+        .stage-delete-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.2s ease;
+        }
+
+
+    /* =========================================================
+       EDIT BUTTON
+       ========================================================= */
+
+    .stage-edit-btn {
+        color: #4fd1c5;
+        border: 1px solid rgba(45, 212, 191, 0.18);
+    }
+
+
+        .stage-edit-btn:hover {
+            color: #99f6e4;
+            background: rgba(45, 212, 191, 0.12);
+            border-color: rgba(45, 212, 191, 0.50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(45, 212, 191, 0.12);
+            text-decoration: none;
+        }
+
+
+            .stage-edit-btn:hover svg {
+                transform: rotate(-8deg) scale(1.08);
+            }
+
+
+    /* =========================================================
+       DELETE BUTTON
+       ========================================================= */
+
+    .stage-delete-btn {
+        color: #f87171;
+        border: 1px solid rgba(248, 113, 113, 0.18);
+    }
+
+
+        .stage-delete-btn:hover {
+            color: #fecaca;
+            background: rgba(248, 113, 113, 0.12);
+            border-color: rgba(248, 113, 113, 0.50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(248, 113, 113, 0.12);
+            text-decoration: none;
+        }
+
+
+            .stage-delete-btn:hover svg {
+                transform: scale(1.08);
+            }
+
+
+        /* =========================================================
+       CLICK EFFECT
+       ========================================================= */
+
+        .stage-edit-btn:active,
+        .stage-delete-btn:active {
+            transform: translateY(0) scale(0.96);
+        }
+
+
+    /* =========================================================
+           STAGE CONTENT
+           ========================================================= */
+
+    .stage-content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+        /* STAGE NAME */
+
+        .stage-content h2 {
+            margin: 0;
+            padding-top: 0;
+            color: #f8fafc;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.3px;
+            /*
+               Gives space so action icons
+               don't overlap the stage name.
+            */
+            padding-right: 70px;
+        }
+
+
+    /* =========================================================
+           STAGE FOOTER
+           ========================================================= */
+
+    .stage-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 18px;
+        border-top: 1px solid rgba(148, 163, 184, 0.08);
+        color: #7f8d9b;
+        font-size: 12px;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+
+    .stage-card:hover .stage-footer {
+        color: #4fd1c5;
+    }
+
+
+    /* ARROW */
+
+    .arrow {
+        color: #4fd1c5;
+        font-size: 19px;
+        transition: transform 0.2s ease;
+    }
+
+
+    .stage-card:hover .arrow {
+        transform: translateX(5px);
+    }
+
+
+    /* =========================================================
+           ADD STAGE CARD
+           ========================================================= */
+
+    .add-stage-card {
+        min-height: 174px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 23px;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.50), rgba(15, 23, 31, 0.55) );
+        border: 1px dashed rgba(45, 212, 191, 0.35);
+        color: #e5e7eb;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+
+        .add-stage-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(45, 212, 191, 0.70);
+            color: #e5e7eb;
+            text-decoration: none;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(45, 212, 191, 0.08);
+        }
+
+
+    /* PLUS ICON */
+
+    .add-stage-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 38px;
+        font-weight: 200;
+        line-height: 1;
+        box-shadow: 0 10px 25px rgba(20, 121, 110, 0.20);
+        transition: transform 0.25s ease;
+    }
+
+
+    .add-stage-card:hover .add-stage-icon {
+        transform: scale(1.08) rotate(90deg);
+    }
+
+
+    /* ADD STAGE TEXT */
+
+    .add-stage-title {
+        margin-top: 15px;
+        color: #f8fafc;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+
+    /* =========================================================
+           TABLET
+           ========================================================= */
+
+    @@media (max-width: 1100px) {
+
+        .production-page {
+            padding: 35px 30px;
+        }
+
+
+        .stage-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+
+    /* =========================================================
+           SMALL TABLET
+           ========================================================= */
+
+    @@media (max-width: 800px) {
+
+        .stage-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+
+        .stage-actions {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 650px) {
+
+        .production-page {
+            padding: 30px 18px;
+        }
+
+
+        .production-brand {
+            gap: 13px;
+        }
+
+
+        .production-logo {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            font-size: 17px;
+        }
+
+
+        .production-title h1 {
+            font-size: 23px;
+        }
+
+
+        .production-title p {
+            font-size: 13px;
+        }
+
+
+        .stage-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+
+        .stage-card {
+            min-height: 170px;
+        }
+
+
+        .add-stage-card {
+            min-height: 170px;
+        }
+    }
+
+
+    /* =========================================================
+           VERY SMALL MOBILE
+           ========================================================= */
+
+    @@media (max-width: 380px) {
+
+        .production-page {
+            padding: 25px 14px;
+        }
+
+
+        .production-title h1 {
+            font-size: 21px;
+        }
+
+
+        .stage-card {
+            padding: 20px;
+            min-height: 165px;
+        }
+
+
+        .add-stage-card {
+            min-height: 165px;
+        }
+    }
+
+
+    /* =========================================================
+           REDUCE MOTION
+           ========================================================= */
+
+    @@media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            transition: none !important;
+        }
+    }
+
+    .home-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        width: 100%;
+    }
+
+
+
+    .reminder-card {
+        width: 320px;
+        padding: 20px;
+        border-radius: 15px;
+        background: linear-gradient( 145deg, #19222b, #0f171f );
+        border: 1px solid rgba(148,163,184,.15);
+    }
+
+    .production-title {
+        flex: 1;
+    }
+
+
+        .production-title h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+
+        .production-title p {
+            margin-top: 6px;
+        }
+
+        .reminder-card h3 {
+            color: #5eead4;
+            margin-bottom: 15px;
+        }
+
+
+
+        .reminder-card label {
+            display: block;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+
+
+        .reminder-card input {
+            padding: 8px;
+            border-radius: 8px;
+            background: #071019;
+            border: 1px solid #334155;
+            color: white;
+        }
+
+    .reminder-input-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+
+
+        .reminder-input-row input {
+            width: 120px;
+            height: 40px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #071019;
+            border: 1px solid #334155;
+            color: white;
+            font-size: 14px;
+        }
+
+
+
+        .reminder-input-row button {
+            height: 40px;
+            padding: 0 18px;
+            border: none;
+            border-radius: 8px;
+            background: #1f9d8b;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+
+
+            .reminder-input-row button:hover {
+                background: #178477;
+            }
+
+
+        .reminder-card button {
+            border: none;
+            border-radius: 8px;
+            background: #1f9d8b;
+            color: white;
+            font-weight: 700;
+        }
+
+    .reminder-success {
+        margin-top: 18px;
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 10px;
+        background: linear-gradient( 145deg, rgba(20,184,166,0.15), rgba(15,23,31,0.85) );
+        border: 1px solid rgba(45,212,191,0.35);
+        color: #5eead4;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(0,0,0,.25);
+    }
+
+    .success-check {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #1f9d8b;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* =========================================================
+       PM REMINDER POPUP
+       ========================================================= */
+
+    .dashboard-reminder-popup {
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        z-index: 99999;
+        width: 390px;
+        max-width: calc(100vw - 40px);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 17px 18px;
+        border-radius: 14px;
+        background: linear-gradient( 145deg, #192a2a, #0f1b20 );
+        border: 1px solid rgba( 45, 212, 191, 0.40 );
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(45, 212, 191, 0.12);
+        color: #e5e7eb;
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+
+        /* SHOW */
+
+        .dashboard-reminder-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+
+    /* ICON */
+
+    .popup-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba( 45, 212, 191, 0.15 );
+        border: 1px solid rgba( 45, 212, 191, 0.30 );
+        color: #5eead4;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+
+    /* CONTENT */
+
+    .popup-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+
+    .popup-title {
+        margin-bottom: 4px;
+        color: #5eead4;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+
+    .popup-message {
+        color: #cbd5e1;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .popup-close {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 7px;
+        background: rgba( 148, 163, 184, 0.08 );
+        color: #94a3b8;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+
+        .popup-close:hover {
+            background: rgba( 248, 113, 113, 0.12 );
+            color: #fca5a5;
+        }
+
+    @@media (max-width: 600px) {
+
+        .dashboard-reminder-popup {
+            top: 15px;
+            right: 15px;
+            left: 15px;
+            width: auto;
+            max-width: none;
+        }
+    }
+
+    /* =========================================================
+       HEADER TOP BAR
+       ========================================================= */
+
+    .production-topbar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+
+
+    /* =========================================================
+       LEFT BRAND AREA
+       ========================================================= */
+
+    .production-brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-width: 0;
+    }
+
+
+    /* =========================================================
+       LOGOUT FORM
+       ========================================================= */
+
+    .logout-form {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+
+    /* =========================================================
+       LOGOUT BUTTON
+       ========================================================= */
+
+    .logout-btn {
+        height: 44px;
+        padding: 0 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: 1px solid rgba(248, 113, 113, 0.30);
+        border-radius: 10px;
+        background: rgba(127, 29, 29, 0.16);
+        color: #fca5a5;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        /* LOGOUT ICON */
+
+        .logout-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.2s ease;
+        }
+
+
+        /* LOGOUT HOVER */
+
+        .logout-btn:hover {
+            background: rgba(248, 113, 113, 0.12);
+            border-color: rgba(248, 113, 113, 0.55);
+            color: #fecaca;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(248, 113, 113, 0.10);
+        }
+
+
+            .logout-btn:hover svg {
+                transform: translateX(2px);
+            }
+
+
+        /* CLICK */
+
+        .logout-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+
+    /* =========================================================
+       REMINDER SECTION
+       ========================================================= */
+
+    .reminder-section {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+
+    /* =========================================================
+       HEADER RESPONSIVE
+       ========================================================= */
+
+    @@media (max-width: 650px) {
+        .production-topbar
+
+    {
+        align-items: flex-start;
+    }
+
+    .production-brand {
+        gap: 13px;
+    }
+
+    .logout-btn {
+        height: 40px;
+        padding: 0 13px;
+        font-size: 13px;
+    }
+
+        .logout-btn span {
+            display: none;
+        }
+
+        .logout-btn svg {
+            width: 19px;
+            height: 19px;
+        }
+
+    .reminder-section {
+        justify-content: stretch;
+    }
+
+    .reminder-card {
+        width: 100%;
+    }
+
+    }
+
+</style>
+
+
+<script>
+
+    function openStage(id, stageName) {
+
+        window.location.href =
+            '@Url.Action("Index", "PMChecklist")' +
+            '?stageId=' +
+            id +
+            '&stageName=' +
+            encodeURIComponent(stageName);
+
+    }
+
+
+    let reminderAlreadyChecked = false;
+
+
+    async function checkPMReminder() {
+
+        if (reminderAlreadyChecked) {
+            return;
+        }
+
+        try {
+
+            const response = await fetch(
+                '@Url.Action("CheckReminder", "Home")',
+                {
+                    method: 'GET',
+                    cache: 'no-store'
+                }
+            );
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Reminder request failed:",
+                    response.status
+                );
+
+                return;
+            }
+
+
+            const data = await response.json();
+
+
+            if (data.showPopup === true) {
+
+                reminderAlreadyChecked = true;
+
+
+                // First display the popup
+                showReminderPopup(data.message);
+
+
+                // Then mark popup as displayed
+                acknowledgeReminderPopup(data.reminderId);
+
+            }
+
+        }
+        catch (error) {
+
+            console.error(
+                "Unable to check PM reminder:",
+                error
+            );
+
+        }
+
+    }
+
+
+    function showReminderPopup(message) {
+
+        const alertBox =
+            document.getElementById(
+                "dashboardReminderPopup"
+            );
+
+
+        const messageElement =
+            document.getElementById(
+                "dashboardReminderMessage"
+            );
+
+
+        if (!alertBox || !messageElement) {
+
+            console.error(
+                "PM reminder popup HTML elements not found."
+            );
+
+            return;
+
+        }
+
+
+        messageElement.textContent =
+            message;
+
+
+        alertBox.classList.add("show");
+
+
+        setTimeout(function () {
+
+            closeReminderPopup();
+
+        }, 10000);
+
+    }
+
+
+    async function acknowledgeReminderPopup(reminderId) {
+
+        try {
+
+            const tokenElement =
+                document.querySelector(
+                    'input[name="__RequestVerificationToken"]'
+                );
+
+
+            if (!tokenElement) {
+
+                console.error(
+                    "Anti-forgery token not found."
+                );
+
+                return;
+
+            }
+
+
+            const formData =
+                new URLSearchParams();
+
+
+            formData.append(
+                "__RequestVerificationToken",
+                tokenElement.value
+            );
+
+
+            formData.append(
+                "reminderId",
+                reminderId
+            );
+
+
+            const response =
+                await fetch(
+                    '@Url.Action("AcknowledgeReminderPopup", "Home")',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type':
+                                'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        body: formData.toString()
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Unable to acknowledge PM reminder popup."
+                );
+
+            }
+
+        }
+        catch (error) {
+
+            console.error(
+                "Error acknowledging PM reminder popup:",
+                error
+            );
+
+        }
+
+    }
+
+
+    function closeReminderPopup() {
+
+        const alertBox =
+            document.getElementById(
+                "dashboardReminderPopup"
+            );
+
+
+        if (alertBox) {
+
+            alertBox.classList.remove("show");
+
+        }
+
+    }
+
+
+    // Check immediately
+    checkPMReminder();
+
+
+    // Check every 30 seconds
+    setInterval(
+        checkPMReminder,
+        30000
+    );
+
+</script>

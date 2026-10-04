@@ -1,0 +1,322 @@
+﻿@model SMT_DELL_Project.Models.Stage
+
+@{
+    ViewData["Title"] = "Edit Stage";
+}
+
+<div class="edit-stage-page">
+
+    <div class="edit-stage-container">
+
+        <!-- HEADER -->
+
+        <div class="edit-stage-header">
+
+            <div class="edit-stage-logo">
+                SMT
+            </div>
+
+            <div class="edit-stage-title">
+
+                <h1>Edit Production Stage</h1>
+
+                <p>
+                    Update the selected production stage
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- EDIT CARD -->
+
+        <div class="edit-stage-card">
+
+            <form asp-controller="Home"
+                  asp-action="Edit"
+                  asp-route-id="@Model.Id"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Id" />
+
+
+                <!-- VALIDATION -->
+
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-summary">
+                </div>
+
+
+                <!-- ONLY STAGE NAME -->
+
+                <div class="form-group">
+
+                    <label asp-for="StageName">
+                        Stage Name
+                    </label>
+
+                    <input asp-for="StageName"
+                           class="form-control"
+                           autocomplete="off"
+                           placeholder="Enter stage name" />
+
+                    <span asp-validation-for="StageName"
+                          class="field-validation">
+                    </span>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-row">
+
+                    <a asp-controller="Home"
+                       asp-action="Index"
+                       class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="update-btn">
+                        Update Stage
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .edit-stage-page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 45px 25px;
+        background: radial-gradient( circle at 15% 15%, rgba(45, 212, 191, 0.08), transparent 30% ), radial-gradient( circle at 85% 85%, rgba(59, 130, 246, 0.07), transparent 30% ), linear-gradient( 135deg, #0b1117 0%, #101820 45%, #0c131a 100% );
+        color: #e5e7eb;
+    }
+
+
+    .edit-stage-container {
+        width: 100%;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+
+    /* HEADER */
+
+    .edit-stage-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+
+    .edit-stage-logo {
+        width: 58px;
+        height: 58px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        color: #ecfeff;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        box-shadow: 0 10px 25px rgba(20, 121, 110, 0.22);
+    }
+
+
+    .edit-stage-title h1 {
+        margin: 0;
+        color: #f1f5f9;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+
+    .edit-stage-title p {
+        margin: 5px 0 0;
+        color: #8d9aa8;
+        font-size: 14px;
+    }
+
+
+    /* CARD */
+
+    .edit-stage-card {
+        width: 100%;
+        padding: 32px;
+        border-radius: 18px;
+        background: linear-gradient( 145deg, rgba(25, 34, 43, 0.97), rgba(15, 23, 31, 0.98) );
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.30);
+    }
+
+
+    /* FORM */
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: #dbe4ec;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+
+    .form-control {
+        width: 100%;
+        height: 54px;
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background: rgba(7, 13, 19, 0.75);
+        color: #f8fafc;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+
+        .form-control:focus {
+            border-color: rgba(45, 212, 191, 0.55);
+            box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.08);
+        }
+
+
+    .field-validation {
+        display: block;
+        margin-top: 6px;
+        color: #f87171;
+        font-size: 12px;
+    }
+
+
+    .validation-summary {
+        margin-bottom: 20px;
+        color: #f87171;
+    }
+
+
+    /* BUTTONS */
+
+    .button-row {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+
+    .cancel-btn,
+    .update-btn {
+        min-width: 135px;
+        height: 48px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+
+    /* CANCEL */
+
+    .cancel-btn {
+        color: #cbd5e1;
+        background: rgba(71, 85, 105, 0.35);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+
+        .cancel-btn:hover {
+            color: #ffffff;
+            background: rgba(71, 85, 105, 0.55);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+
+    /* UPDATE */
+
+    .update-btn {
+        color: #ecfeff;
+        background: linear-gradient( 145deg, #1f9d8b, #14796e );
+        border: 1px solid rgba(94, 234, 212, 0.18);
+        box-shadow: 0 8px 20px rgba(20, 121, 110, 0.20);
+    }
+
+
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(20, 121, 110, 0.30);
+        }
+
+
+    /* MOBILE */
+
+    @@media (max-width: 650px) {
+
+        .edit-stage-page {
+            padding: 30px 18px;
+        }
+
+        .edit-stage-card {
+            padding: 22px;
+        }
+
+        .edit-stage-title h1 {
+            font-size: 23px;
+        }
+
+        .button-row {
+            flex-direction: column-reverse;
+        }
+
+        .cancel-btn,
+        .update-btn {
+            width: 100%;
+        }
+    }
+
+</style>
+
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+
+}

@@ -1,0 +1,186 @@
+﻿@model SMT_DELL_Project.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Employee Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Employee Login</title>
+
+    <link rel="stylesheet"
+          href="~/css/auth.css"
+          asp-append-version="true" />
+
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="auth-card login-card">
+
+            <!-- BRAND -->
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    S
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>Employee Portal</h1>
+
+                    <p>SMT DELL Project</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- HEADER -->
+
+            <div class="auth-header">
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Login using your employee credentials.
+                </p>
+
+            </div>
+
+
+            <!-- SUCCESS MESSAGE -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+
+                    @TempData["SuccessMessage"]
+
+                </div>
+            }
+
+
+            <!-- LOGIN FORM -->
+
+            <form asp-controller="Account"
+                  asp-action="Login"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- Validation -->
+
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-summary">
+                </div>
+
+
+                <!-- Employee ID -->
+
+                <div class="form-group">
+
+                    <label asp-for="EmployeeId">
+                    </label>
+
+                    <input asp-for="EmployeeId"
+                           class="form-control"
+                           placeholder="Enter Employee ID"
+                           autocomplete="username" />
+
+                    <span asp-validation-for="EmployeeId"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label asp-for="Password">
+                    </label>
+
+                    <input asp-for="Password"
+                           class="form-control"
+                           placeholder="Enter password"
+                           autocomplete="current-password" />
+
+                    <span asp-validation-for="Password"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- Remember me -->
+
+                <div class="remember-row">
+
+                    <label class="remember-label">
+
+                        <input asp-for="RememberMe" />
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Login -->
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <!-- Registration link -->
+
+            <div class="bottom-link">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+                <a asp-controller="Account"
+                   asp-action="Register">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Client-side validation -->
+
+    <partial name="_ValidationScriptsPartial" />
+
+</body>
+
+</html>
