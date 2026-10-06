@@ -1,90 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\",
+  "WorkspaceRootPath": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\services\\pmreminderbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\services\\pmreminderbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\services\\pmreminderbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\services\\pmreminderbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\models\\pmremindersetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\models\\pmremindersetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\controllers\\pmchecklistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\controllers\\pmchecklistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\pmchecklist\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\pmchecklist\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\controllers\\stagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\controllers\\stagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\models\\pmchecklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\models\\pmchecklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\pmchecklist\\deleteactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\pmchecklist\\deleteactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\pmchecklist\\addactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\pmchecklist\\addactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\pmchecklist\\editactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\pmchecklist\\editactivity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\models\\pmactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\models\\pmactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\home\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\home\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\views\\home\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\views\\home\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project\\smt-dell-project\\models\\stage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\models\\stage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|c:\\users\\2063907\\source\\repos\\smt-dell-project (pm activities)\\smt-dell-project\\models\\forgotpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9905B072-C80F-4490-8227-44FDA27B1866}|SMT-DELL-Project\\SMT-DELL-Project.csproj|solutionrelative:smt-dell-project\\models\\forgotpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,260 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Program.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Program.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Program.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "PMReminderBackgroundService.cs",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
+              "RelativeToolTip": "SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAiwKkAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-17T03:31:58.866Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\appsettings.json",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\appsettings.json",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\appsettings.json",
-              "RelativeToolTip": "SMT-DELL-Project\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-09-17T03:27:33.927Z",
+              "WhenOpened": "2026-10-06T03:41:41.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PMReminderBackgroundService.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Services\\PMReminderBackgroundService.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAuwLMAAAAlAAAAAAAAAA==",
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\IEmailService.cs",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\IEmailService.cs",
+              "RelativeToolTip": "SMT-DELL-Project\\Services\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-17T03:23:44.322Z"
+              "WhenOpened": "2026-10-06T03:41:32.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Services\\EmailService.cs",
+              "RelativeToolTip": "SMT-DELL-Project\\Services\\EmailService.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAIwFUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-06T03:41:23.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ForgotPasswordViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Models\\ForgotPasswordViewModel.cs",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Models\\ForgotPasswordViewModel.cs",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Models\\ForgotPasswordViewModel.cs",
+              "RelativeToolTip": "SMT-DELL-Project\\Models\\ForgotPasswordViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-06T03:32:17.3Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\EmailService.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\EmailService.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\EmailService.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Services\\EmailService.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAuwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-17T03:23:11.635Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IEmailService.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\IEmailService.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Services\\IEmailService.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Services\\IEmailService.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Services\\IEmailService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-17T03:22:51.869Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PMReminderSetting.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMReminderSetting.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Models\\PMReminderSetting.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMReminderSetting.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Models\\PMReminderSetting.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T11:18:55.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PMChecklist.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMChecklist.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Models\\PMChecklist.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMChecklist.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Models\\PMChecklist.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T09:48:31.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DeleteActivity.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\DeleteActivity.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\PMChecklist\\DeleteActivity.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\DeleteActivity.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\PMChecklist\\DeleteActivity.cshtml",
-              "ViewState": "AgIAAGgAAAAAAAAAAADwv4EAAAAZAAAAAAAAAA==",
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "SMT-DELL-Project\\Views\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAiwJUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T09:39:42.696Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "EditActivity.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\EditActivity.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\PMChecklist\\EditActivity.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\EditActivity.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\PMChecklist\\EditActivity.cshtml",
-              "ViewState": "AgIAAHwAAAAAAAAAAADwv4wAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T09:39:00.443Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AddActivity.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\AddActivity.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\PMChecklist\\AddActivity.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\AddActivity.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\PMChecklist\\AddActivity.cshtml",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T09:34:33.499Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T09:25:28.541Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "PMActivity.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMActivity.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Models\\PMActivity.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\PMActivity.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Models\\PMActivity.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAQwA4AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T09:24:58.878Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\Index.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\PMChecklist\\Index.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\PMChecklist\\Index.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\PMChecklist\\Index.cshtml",
-              "ViewState": "AgIAAIcFAAAAAAAAAAAAAJ0FAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T09:08:48.646Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PMChecklistController.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\PMChecklistController.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Controllers\\PMChecklistController.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\PMChecklistController.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Controllers\\PMChecklistController.cs",
-              "ViewState": "AgIAAAwCAAAAAAAAAAAAACMCAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T09:08:09.89Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "StagesController.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\StagesController.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Controllers\\StagesController.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\StagesController.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Controllers\\StagesController.cs",
-              "ViewState": "AgIAAGoBAAAAAAAAAAAUwHgBAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T08:29:47.923Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Stage.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\Stage.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Models\\Stage.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Models\\Stage.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Models\\Stage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T07:31:47.193Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Delete.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\Home\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Delete.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\Home\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T06:12:32.713Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Edit.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\Home\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Edit.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\Home\\Edit.cshtml",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAqwHQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T06:12:01.427Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Create.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\Home\\Create.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Create.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\Home\\Create.cshtml",
-              "ViewState": "AgIAALEBAAAAAAAAAAAiwL8BAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-16T06:11:29.935Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "SMT-DELL-Project\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAgwGcAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-16T06:01:33.617Z"
+              "WhenOpened": "2026-10-06T03:30:36.269Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SMT-DELL-Project\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project\\SMT-DELL-Project\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SMT-DELL-Project\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAJsEAAAAAAAAAAAgwKcEAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-15T06:58:31.652Z",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "SMT-DELL-Project\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\2063907\\source\\repos\\SMT-DELL-Project (PM Activities)\\SMT-DELL-Project\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "SMT-DELL-Project\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAiwPMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-06T03:30:24.925Z",
               "EditorCaption": ""
             }
           ]

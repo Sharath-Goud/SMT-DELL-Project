@@ -69,85 +69,95 @@
 
 
             <!-- PM REMINDER -->
-            <div class="reminder-section">
+            @if (User.IsInRole("Admin"))
+            {
+                <!-- PM REMINDER -->
 
-                <div class="reminder-card">
+                <div class="reminder-section">
 
-                    <h3>PM Reminder</h3>
+                    <div class="reminder-card">
 
-                    <form asp-controller="Home"
-                          asp-action="SaveReminder"
-                          method="post">
+                        <h3>PM Reminder</h3>
 
-                        @Html.AntiForgeryToken()
+                        <form asp-controller="Home"
+                              asp-action="SaveReminder"
+                              method="post">
 
-                        <label>
-                            Remind After Days
-                        </label>
+                            @Html.AntiForgeryToken()
 
-                        <div class="reminder-input-row">
+                            <label>
+                                Remind After Days
+                            </label>
 
-                            <input type="number"
-                                   name="reminderDays"
-                                   min="1"
-                                   placeholder="Enter days"
-                                   required />
+                            <div class="reminder-input-row">
 
-                            <button type="submit">
-                                Save Reminder
-                            </button>
+                                <input type="number"
+                                       name="reminderDays"
+                                       min="1"
+                                       placeholder="Enter days"
+                                       required />
 
-                        </div>
+                                <button type="submit">
+                                    Save Reminder
+                                </button>
 
-                    </form>
+                            </div>
 
-                    @if (TempData["SuccessMessage"] != null)
-                    {
-                        <div class="reminder-success">
+                        </form>
 
-                            <span class="success-check">
-                                ✓
-                            </span>
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="reminder-success">
 
-                            <span>
-                                @TempData["SuccessMessage"]
-                            </span>
+                                <span class="success-check">
+                                    ✓
+                                </span>
 
-                        </div>
-                    }
+                                <span>
+                                    @TempData["SuccessMessage"]
+                                </span>
+
+                            </div>
+                        }
+
+                    </div>
 
                 </div>
-
-            </div>
+            }
 
 
             <!-- PM REMINDER POPUP -->
-            <div id="dashboardReminderPopup"
-                 class="dashboard-reminder-popup">
+            @if (User.IsInRole("Admin"))
+            {
+                <!-- PM REMINDER POPUP -->
 
-                <div class="popup-icon">
-                    ✓
-                </div>
+                <div id="dashboardReminderPopup"
+                     class="dashboard-reminder-popup">
 
-                <div class="popup-content">
-
-                    <div class="popup-title">
-                        PM Reminder
+                    <div class="popup-icon">
+                        ✓
                     </div>
 
-                    <div id="dashboardReminderMessage"
-                         class="popup-message">
+                    <div class="popup-content">
+
+                        <div class="popup-title">
+                            PM Reminder
+                        </div>
+
+                        <div id="dashboardReminderMessage"
+                             class="popup-message">
+                        </div>
+
                     </div>
 
+                    <button type="button"
+                            class="popup-close"
+                            onclick="closeReminderPopup()">
+                        ×
+                    </button>
+
                 </div>
-
-                <button type="button"
-                        class="popup-close"
-                        onclick="closeReminderPopup()">
-                    ×
-                </button>
-
-            </div>
+            }
 
         </div>
 
@@ -163,43 +173,59 @@
                     <div class="stage-card"
                          onclick="openStage(@stage.Id, '@stage.StageName')">
 
-                        <!-- ACTION BUTTONS -->
-                        <div class="stage-actions">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="stage-actions">
 
-                            <!-- EDIT -->
-                            <a asp-controller="Home"
-                               asp-action="Edit"
-                               asp-route-id="@stage.Id"
-                               class="stage-edit-btn"
-                               title="Edit Stage"
-                               onclick="event.stopPropagation();">
+                                <!-- EDIT -->
 
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 20h9"></path>
-                                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
-                                </svg>
+                                <a asp-controller="Home"
+                                   asp-action="Edit"
+                                   asp-route-id="@stage.Id"
+                                   class="stage-edit-btn"
+                                   title="Edit Stage"
+                                   onclick="event.stopPropagation();">
 
-                            </a>
+                                    <svg viewBox="0 0 24 24"
+                                         aria-hidden="true">
 
-                            <!-- DELETE -->
-                            <a asp-controller="Home"
-                               asp-action="Delete"
-                               asp-route-id="@stage.Id"
-                               class="stage-delete-btn"
-                               title="Delete Stage"
-                               onclick="event.stopPropagation();">
+                                        <path d="M12 20h9"></path>
 
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M9 3h6"></path>
-                                    <path d="M4 6h16"></path>
-                                    <path d="M7 6l1 14h8l1-14"></path>
-                                    <path d="M10 10v6"></path>
-                                    <path d="M14 10v6"></path>
-                                </svg>
+                                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
 
-                            </a>
+                                    </svg>
 
-                        </div>
+                                </a>
+
+
+                                <!-- DELETE -->
+
+                                <a asp-controller="Home"
+                                   asp-action="Delete"
+                                   asp-route-id="@stage.Id"
+                                   class="stage-delete-btn"
+                                   title="Delete Stage"
+                                   onclick="event.stopPropagation();">
+
+                                    <svg viewBox="0 0 24 24"
+                                         aria-hidden="true">
+
+                                        <path d="M9 3h6"></path>
+
+                                        <path d="M4 6h16"></path>
+
+                                        <path d="M7 6l1 14h8l1-14"></path>
+
+                                        <path d="M10 10v6"></path>
+
+                                        <path d="M14 10v6"></path>
+
+                                    </svg>
+
+                                </a>
+
+                            </div>
+                        }
 
 
                         <!-- STAGE NAME -->
@@ -231,20 +257,24 @@
             }
 
 
-            <!-- ADD STAGE -->
-            <a asp-controller="Home"
-               asp-action="Create"
-               class="add-stage-card">
+            @if (User.IsInRole("Admin"))
+            {
+                <!-- ADD STAGE -->
 
-                <div class="add-stage-icon">
-                    +
-                </div>
+                <a asp-controller="Home"
+                   asp-action="Create"
+                   class="add-stage-card">
 
-                <div class="add-stage-title">
-                    Add Stage
-                </div>
+                    <div class="add-stage-icon">
+                        +
+                    </div>
 
-            </a>
+                    <div class="add-stage-title">
+                        Add Stage
+                    </div>
+
+                </a>
+            }
 
         </div>
 
@@ -1242,205 +1272,212 @@
     }
 
 
-    let reminderAlreadyChecked = false;
+    @if (User.IsInRole("Admin"))
+    {
+            <text>
+
+            let reminderAlreadyChecked = false;
 
 
-    async function checkPMReminder() {
+            async function checkPMReminder() {
 
-        if (reminderAlreadyChecked) {
-            return;
-        }
-
-        try {
-
-            const response = await fetch(
-                '@Url.Action("CheckReminder", "Home")',
-                {
-                    method: 'GET',
-                    cache: 'no-store'
+                if (reminderAlreadyChecked) {
+                    return;
                 }
-            );
+
+                try {
+
+                    const response = await fetch(
+                        '@Url.Action("CheckReminder", "Home")',
+                        {
+                            method: 'GET',
+                            cache: 'no-store'
+                        }
+                    );
 
 
-            if (!response.ok) {
+                    if (!response.ok) {
 
-                console.error(
-                    "Reminder request failed:",
-                    response.status
-                );
+                        console.error(
+                            "Reminder request failed:",
+                            response.status
+                        );
 
-                return;
-            }
-
-
-            const data = await response.json();
-
-
-            if (data.showPopup === true) {
-
-                reminderAlreadyChecked = true;
-
-
-                // First display the popup
-                showReminderPopup(data.message);
-
-
-                // Then mark popup as displayed
-                acknowledgeReminderPopup(data.reminderId);
-
-            }
-
-        }
-        catch (error) {
-
-            console.error(
-                "Unable to check PM reminder:",
-                error
-            );
-
-        }
-
-    }
-
-
-    function showReminderPopup(message) {
-
-        const alertBox =
-            document.getElementById(
-                "dashboardReminderPopup"
-            );
-
-
-        const messageElement =
-            document.getElementById(
-                "dashboardReminderMessage"
-            );
-
-
-        if (!alertBox || !messageElement) {
-
-            console.error(
-                "PM reminder popup HTML elements not found."
-            );
-
-            return;
-
-        }
-
-
-        messageElement.textContent =
-            message;
-
-
-        alertBox.classList.add("show");
-
-
-        setTimeout(function () {
-
-            closeReminderPopup();
-
-        }, 10000);
-
-    }
-
-
-    async function acknowledgeReminderPopup(reminderId) {
-
-        try {
-
-            const tokenElement =
-                document.querySelector(
-                    'input[name="__RequestVerificationToken"]'
-                );
-
-
-            if (!tokenElement) {
-
-                console.error(
-                    "Anti-forgery token not found."
-                );
-
-                return;
-
-            }
-
-
-            const formData =
-                new URLSearchParams();
-
-
-            formData.append(
-                "__RequestVerificationToken",
-                tokenElement.value
-            );
-
-
-            formData.append(
-                "reminderId",
-                reminderId
-            );
-
-
-            const response =
-                await fetch(
-                    '@Url.Action("AcknowledgeReminderPopup", "Home")',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type':
-                                'application/x-www-form-urlencoded; charset=UTF-8'
-                        },
-                        body: formData.toString()
+                        return;
                     }
-                );
 
 
-            if (!response.ok) {
+                    const data = await response.json();
 
-                console.error(
-                    "Unable to acknowledge PM reminder popup."
-                );
+
+                    if (data.showPopup === true) {
+
+                        reminderAlreadyChecked = true;
+
+
+                        // First display the popup
+                        showReminderPopup(data.message);
+
+
+                        // Then mark popup as displayed
+                        acknowledgeReminderPopup(data.reminderId);
+
+                    }
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "Unable to check PM reminder:",
+                        error
+                    );
+
+                }
 
             }
 
-        }
-        catch (error) {
 
-            console.error(
-                "Error acknowledging PM reminder popup:",
-                error
+            function showReminderPopup(message) {
+
+                const alertBox =
+                    document.getElementById(
+                        "dashboardReminderPopup"
+                    );
+
+
+                const messageElement =
+                    document.getElementById(
+                        "dashboardReminderMessage"
+                    );
+
+
+                if (!alertBox || !messageElement) {
+
+                    console.error(
+                        "PM reminder popup HTML elements not found."
+                    );
+
+                    return;
+
+                }
+
+
+                messageElement.textContent =
+                    message;
+
+
+                alertBox.classList.add("show");
+
+
+                setTimeout(function () {
+
+                    closeReminderPopup();
+
+                }, 10000);
+
+            }
+
+
+            async function acknowledgeReminderPopup(reminderId) {
+
+                try {
+
+                    const tokenElement =
+                        document.querySelector(
+                            'input[name="__RequestVerificationToken"]'
+                        );
+
+
+                    if (!tokenElement) {
+
+                        console.error(
+                            "Anti-forgery token not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const formData =
+                        new URLSearchParams();
+
+
+                    formData.append(
+                        "__RequestVerificationToken",
+                        tokenElement.value
+                    );
+
+
+                    formData.append(
+                        "reminderId",
+                        reminderId
+                    );
+
+
+                    const response =
+                        await fetch(
+                            '@Url.Action("AcknowledgeReminderPopup", "Home")',
+                            {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type':
+                                        'application/x-www-form-urlencoded; charset=UTF-8'
+                                },
+                                body: formData.toString()
+                            }
+                        );
+
+
+                    if (!response.ok) {
+
+                        console.error(
+                            "Unable to acknowledge PM reminder popup."
+                        );
+
+                    }
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "Error acknowledging PM reminder popup:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            function closeReminderPopup() {
+
+                const alertBox =
+                    document.getElementById(
+                        "dashboardReminderPopup"
+                    );
+
+
+                if (alertBox) {
+
+                    alertBox.classList.remove("show");
+
+                }
+
+            }
+
+
+            // Check immediately
+            checkPMReminder();
+
+
+            // Check every 30 seconds
+            setInterval(
+                checkPMReminder,
+                30000
             );
 
-        }
-
+            </text>
     }
-
-
-    function closeReminderPopup() {
-
-        const alertBox =
-            document.getElementById(
-                "dashboardReminderPopup"
-            );
-
-
-        if (alertBox) {
-
-            alertBox.classList.remove("show");
-
-        }
-
-    }
-
-
-    // Check immediately
-    checkPMReminder();
-
-
-    // Check every 30 seconds
-    setInterval(
-        checkPMReminder,
-        30000
-    );
 
 </script>

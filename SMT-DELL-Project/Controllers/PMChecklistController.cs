@@ -23,7 +23,9 @@ namespace SMT_DELL_Project.Controllers
         public async Task<IActionResult> Index(
     int stageId,
     int page = 1,
-    int pageSize = 15)
+    int pageSize = 15,
+    DateTime? fromDate = null,
+    DateTime? toDate = null)
         {
             if (page < 1)
             {
@@ -32,17 +34,31 @@ namespace SMT_DELL_Project.Controllers
 
             pageSize = 15;
 
+            if (!fromDate.HasValue && !toDate.HasValue)
+            {
+                fromDate = DateTime.Today;
+                toDate = DateTime.Today;
+            }
+
+            // ------------------------------------------------------------
+            // GET STAGE
+            // ------------------------------------------------------------
+
             var stage = await _context.Stages
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s =>
                     s.Id == stageId &&
                     s.IsActive);
 
-
             if (stage == null)
             {
                 return NotFound();
             }
+
+
+            // ------------------------------------------------------------
+            // GET ACTIVITIES
+            // ------------------------------------------------------------
 
             var activities = await _context.PMActivities
                 .AsNoTracking()
@@ -53,10 +69,18 @@ namespace SMT_DELL_Project.Controllers
                 .ToListAsync();
 
 
+            // ------------------------------------------------------------
+            // VIEWBAG
+            // ------------------------------------------------------------
 
             ViewBag.StageId = stage.Id;
             ViewBag.StageName = stage.StageName;
             ViewBag.ChecklistName = "PM Activities";
+
+
+            // ------------------------------------------------------------
+            // CHECKLIST QUERY
+            // ------------------------------------------------------------
 
             var checklistQuery = _context.PMChecklists
                 .AsNoTracking()
@@ -65,51 +89,135 @@ namespace SMT_DELL_Project.Controllers
                     c.StageId == stageId);
 
 
-            int totalRecords = await checklistQuery.CountAsync();
+            // ------------------------------------------------------------
+            // DATE VALIDATION
+            // ------------------------------------------------------------
 
-            int totalPages = (int)Math.Ceiling(
-                totalRecords / (double)pageSize);
+            if (fromDate.HasValue &&
+                toDate.HasValue &&
+                fromDate.Value.Date > toDate.Value.Date)
+            {
+                ViewBag.FilterError =
+                    "From Date cannot be greater than To Date.";
+
+                ViewBag.FromDate = fromDate;
+                ViewBag.ToDate = toDate;
+
+                ViewBag.SubmittedChecklist =
+                    new List<PMChecklist>();
+
+                ViewBag.CurrentPage = 1;
+                ViewBag.PageSize = pageSize;
+                ViewBag.TotalRecords = 0;
+                ViewBag.TotalPages = 0;
+
+                return View(activities);
+            }
 
 
-            if (totalPages > 0 && page > totalPages)
+            // ------------------------------------------------------------
+            // APPLY FROM DATE
+            // ------------------------------------------------------------
+
+            if (fromDate.HasValue)
+            {
+                DateTime from = fromDate.Value.Date;
+
+                checklistQuery = checklistQuery.Where(c =>
+                    c.CreatedDate >= from);
+            }
+
+
+            if (toDate.HasValue)
+            {
+                DateTime toExclusive =
+                    toDate.Value.Date.AddDays(1);
+
+                checklistQuery = checklistQuery.Where(c =>
+                    c.CreatedDate < toExclusive);
+            }
+
+
+            // ------------------------------------------------------------
+            // COUNT AFTER DATE FILTER
+            // ------------------------------------------------------------
+
+            int totalRecords =
+                await checklistQuery.CountAsync();
+
+
+            // ------------------------------------------------------------
+            // TOTAL PAGES
+            // ------------------------------------------------------------
+
+            int totalPages =
+                (int)Math.Ceiling(
+                    totalRecords / (double)pageSize);
+
+
+            // ------------------------------------------------------------
+            // IF PAGE IS GREATER THAN TOTAL PAGES
+            // ------------------------------------------------------------
+
+            if (totalPages > 0 &&
+                page > totalPages)
             {
                 page = totalPages;
             }
 
+            if (totalPages == 0)
+            {
+                page = 1;
+            }
+
+
+            // ------------------------------------------------------------
+            // GET PAGED RESULT
+            // ------------------------------------------------------------
 
             List<PMChecklist> submittedChecklist =
                 await checklistQuery
+                    .OrderByDescending(c => c.CreatedDate)
+                    .ThenByDescending(c => c.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
 
-                .OrderByDescending(c => c.CreatedDate)
-                .ThenByDescending(c => c.Id)
 
-                .Skip((page - 1) * pageSize)
-
-                .Take(pageSize)
-
-                .ToListAsync();
-
+            // ------------------------------------------------------------
+            // SEND DATA TO VIEW
+            // ------------------------------------------------------------
 
             ViewBag.SubmittedChecklist =
                 submittedChecklist;
 
-
             ViewBag.CurrentPage =
                 page;
-
 
             ViewBag.PageSize =
                 pageSize;
 
-
             ViewBag.TotalRecords =
                 totalRecords;
-
 
             ViewBag.TotalPages =
                 totalPages;
 
 
+            // ------------------------------------------------------------
+            // KEEP SELECTED FILTER VALUES
+            // ------------------------------------------------------------
+
+            ViewBag.FromDate =
+                fromDate?.ToString("yyyy-MM-dd");
+
+            ViewBag.ToDate =
+                toDate?.ToString("yyyy-MM-dd");
+
+
+            // ------------------------------------------------------------
+            // RETURN VIEW
+            // ------------------------------------------------------------
 
             return View(activities);
         }

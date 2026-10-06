@@ -97,8 +97,9 @@ namespace SMT_DELL_Project.Services
             await smtp.SendMailAsync(message);
 
             _logger.LogInformation(
-                "PM reminder email sent successfully to {Recipients}",
-                string.Join(", ", recipientList));
+            "Email sent successfully to {Recipients} with subject {Subject}",
+            string.Join(", ", recipientList),
+            subject);
         }
     }
 }

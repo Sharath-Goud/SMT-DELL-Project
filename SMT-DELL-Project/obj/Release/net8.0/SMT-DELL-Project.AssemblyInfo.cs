@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SMT-DELL-Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6db010a39b5b70f62f7113d6381c170e983dce0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SMT-DELL-Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SMT-DELL-Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -61,20 +61,23 @@
                 </div>
 
 
-                <!-- ADD ACTIVITY -->
-                <a asp-controller="PMChecklist"
-                   asp-action="AddActivity"
-                   asp-route-stageId="@ViewBag.StageId"
-                   class="add-activity-btn">
+                @if (User.IsInRole("Admin"))
+                {
+                    <!-- ADD ACTIVITY -->
 
-                    <span class="plus-icon">+</span>
+                    <a asp-controller="PMChecklist"
+                       asp-action="AddActivity"
+                       asp-route-stageId="@ViewBag.StageId"
+                       class="add-activity-btn">
 
-                    Add Activity
+                        <span class="plus-icon">+</span>
 
-                </a>
+                        Add Activity
+
+                    </a>
+                }
 
             </div>
-
 
             <!-- SUCCESS MESSAGE -->
             @if (TempData["SuccessMessage"] != null)
@@ -88,8 +91,6 @@
                 </div>
             }
 
-
-            <!-- CHECKLIST FORM -->
             <!-- CHECKLIST FORM -->
             <form asp-controller="PMChecklist"
                   asp-action="SaveChecklist"
@@ -127,10 +128,12 @@
                                 <th>
                                     Remarks
                                 </th>
-
-                                <th class="actions-header">
-                                    Actions
-                                </th>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <th class="actions-header">
+                                        Actions
+                                    </th>
+                                }
 
                             </tr>
 
@@ -187,34 +190,37 @@
 
 
                                         <!-- ACTIONS -->
-                                        <td class="activity-actions">
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <td class="activity-actions">
 
-                                            <!-- EDIT -->
-                                            <a asp-controller="PMChecklist"
-                                               asp-action="EditActivity"
-                                               asp-route-id="@activity.Id"
-                                               class="activity-edit-btn"
-                                               title="Edit Activity"
-                                               onclick="event.stopPropagation();">
+                                                <!-- EDIT -->
+                                                <a asp-controller="PMChecklist"
+                                                   asp-action="EditActivity"
+                                                   asp-route-id="@activity.Id"
+                                                   class="activity-edit-btn"
+                                                   title="Edit Activity"
+                                                   onclick="event.stopPropagation();">
 
-                                                ✏
+                                                    ✏
 
-                                            </a>
+                                                </a>
 
 
-                                            <!-- DELETE -->
-                                            <a asp-controller="PMChecklist"
-                                               asp-action="DeleteActivity"
-                                               asp-route-id="@activity.Id"
-                                               class="activity-delete-btn"
-                                               title="Delete Activity"
-                                               onclick="event.stopPropagation();">
+                                                <!-- DELETE -->
+                                                <a asp-controller="PMChecklist"
+                                                   asp-action="DeleteActivity"
+                                                   asp-route-id="@activity.Id"
+                                                   class="activity-delete-btn"
+                                                   title="Delete Activity"
+                                                   onclick="event.stopPropagation();">
 
-                                                🗑
+                                                    🗑
 
-                                            </a>
+                                                </a>
 
-                                        </td>
+                                            </td>
+                                        }
 
                                     </tr>
                                 }
@@ -295,11 +301,11 @@
             @{
                 var submittedChecklist =
                 ViewBag.SubmittedChecklist
-                as List<SMT_DELL_Project.Models.PMChecklist>;
+                as List<SMT_DELL_Project.Models.PMChecklist>
+                ?? new List<SMT_DELL_Project.Models.PMChecklist>();
             }
 
-            @if (submittedChecklist != null && submittedChecklist.Any())
-            {
+            
                 <div class="submitted-result-card">
 
                     <!-- RESULT HEADER -->
@@ -321,6 +327,188 @@
                         <div class="completed-badge">
                             ✓ Completed
                         </div>
+
+                    </div>
+
+                    <!-- =========================================================
+                         DATE FILTER
+                    ========================================================= -->
+
+                    <div style="
+                        display:flex;
+                        align-items:flex-end;
+                        gap:15px;
+                        flex-wrap:wrap;
+                        width:100%;
+                        margin:0 0 25px 0;
+                        padding:20px;
+                        box-sizing:border-box;
+                        border-radius:12px;
+                        background:rgba(7,13,19,0.75);
+                        border:1px solid rgba(148,163,184,0.20);
+    ">
+
+                        <form asp-controller="PMChecklist"
+                              asp-action="Index"
+                              method="get"
+                              style="
+                                  display:flex;
+                                  align-items:flex-end;
+                                  gap:15px;
+                                  flex-wrap:wrap;
+                                  width:100%;
+                                  margin:0;
+                                  padding:0;
+                              ">
+
+                            <!-- KEEP CURRENT STAGE -->
+                            <input type="hidden"
+                                   name="stageId"
+                                   value="@ViewBag.StageId" />
+
+                            <!-- FROM DATE -->
+                            <div style="
+                                display:flex;
+                                flex-direction:column;
+                                gap:6px;
+                            ">
+
+                                <label for="fromDate"
+                                       style="
+                                           display:block;
+                                           color:#cbd5e1;
+                                           font-size:13px;
+                                           font-weight:600;
+                                       ">
+                                    From Date
+                                </label>
+
+                                <input type="date"
+                                       id="fromDate"
+                                       class="pm-date-input"
+                                       name="fromDate"
+                                       value="@ViewBag.FromDate"
+                                       style="
+                                           display:block;
+                                           width:180px;
+                                           height:42px;
+                                           padding:8px 12px;
+                                           box-sizing:border-box;
+                                           border-radius:8px;
+                                           border:1px solid rgba(148,163,184,0.30);
+                                           background:#0b1117;
+                                           color:#ffffff;
+                                           font-size:14px;
+                                           outline:none;
+                                       " />
+
+                            </div>
+
+
+                            <!-- TO DATE -->
+                            <div style="
+                                display:flex;
+                                flex-direction:column;
+                                gap:6px;
+                            ">
+
+                                <label for="toDate"
+                                                   style="
+                                       display:block;
+                                       color:#cbd5e1;
+                                       font-size:13px;
+                                       font-weight:600;
+                                   ">
+                                    To Date
+                                </label>
+
+                                <input type="date"
+                                       id="toDate"
+                                       class="pm-date-input"
+                                       name="toDate"
+                                       value="@ViewBag.ToDate"
+                                       style="
+                                       display:block;
+                                       width:180px;
+                                       height:42px;
+                                       padding:8px 12px;
+                                       box-sizing:border-box;
+                                       border-radius:8px;
+                                       border:1px solid rgba(148,163,184,0.30);
+                                       background:#0b1117;
+                                       color:#ffffff;
+                                       font-size:14px;
+                                       outline:none;
+                                   " />
+
+                            </div>
+
+
+                            <!-- SEARCH BUTTON -->
+                            <button type="submit"
+                                    style="
+                                    display:inline-flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    height:42px;
+                                    padding:0 22px;
+                                    border:0;
+                                    border-radius:8px;
+                                    background:linear-gradient(145deg,#1f9d8b,#14796e);
+                                    color:#ffffff;
+                                    font-size:14px;
+                                    font-weight:700;
+                                    cursor:pointer;
+                                    white-space:nowrap;
+                                ">
+                                 Search
+                            </button>
+
+
+                            <!-- CLEAR BUTTON -->
+                            <a asp-controller="PMChecklist"
+                               asp-action="Index"
+                               asp-route-stageId="@ViewBag.StageId"
+                               style="
+                                   display:inline-flex;
+                                   align-items:center;
+                                   justify-content:center;
+                                   height:42px;
+                                   padding:0 22px;
+                                   box-sizing:border-box;
+                                   border-radius:8px;
+                                   background:rgba(148,163,184,0.10);
+                                   border:1px solid rgba(148,163,184,0.25);
+                                   color:#cbd5e1;
+                                   text-decoration:none;
+                                   font-size:14px;
+                                   font-weight:600;
+                                   white-space:nowrap;
+                               ">
+                                Clear
+                            </a>
+
+                        </form>
+
+
+                        <!-- FILTER ERROR -->
+                        @if (ViewBag.FilterError != null)
+                        {
+                            <div style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:10px 14px;
+                        box-sizing:border-box;
+                        border-radius:8px;
+                        background:rgba(248,113,113,0.10);
+                        border:1px solid rgba(248,113,113,0.20);
+                        color:#fca5a5;
+                        font-size:13px;
+                        font-weight:600;
+                    ">
+                                ⚠ @ViewBag.FilterError
+                            </div>
+                        }
 
                     </div>
 
@@ -355,27 +543,30 @@
                             </thead>
 
 
-                            <tbody>
+                        <tbody>
 
-                                @{
-                                    int resultNumber =
-                                    ((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1;
-                                }
+                            @if (submittedChecklist.Any())
+                            {
+                                int resultNumber =
+                                ((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1;
 
                                 @foreach (var result in submittedChecklist)
                                 {
                                     <tr>
 
+                                        <!-- NUMBER -->
                                         <td class="result-number">
                                             @resultNumber
                                         </td>
 
 
+                                        <!-- ACTIVITY -->
                                         <td class="result-activity">
                                             @result.Activity?.ActivityName
                                         </td>
 
 
+                                        <!-- RESULT -->
                                         <td>
 
                                             @if (result.Status == "Working")
@@ -394,6 +585,7 @@
                                         </td>
 
 
+                                        <!-- REMARKS -->
                                         <td class="result-remarks">
 
                                             @if (string.IsNullOrWhiteSpace(result.Remarks))
@@ -413,8 +605,49 @@
 
                                     resultNumber++;
                                 }
+                            }
+                            else
+                            {
+                                <!-- NO DATA -->
+                                <tr>
 
-                            </tbody>
+                                    <td colspan="4"
+                                        style="
+                        padding:50px 20px;
+                        text-align:center;
+                        color:#94a3b8;
+                    ">
+
+                                        <div style="
+                        font-size:32px;
+                        margin-bottom:12px;
+                        opacity:0.8;
+                    ">
+                                            📋
+                                        </div>
+
+                                        <div style="
+                        color:#cbd5e1;
+                        font-size:16px;
+                        font-weight:600;
+                        margin-bottom:6px;
+                    ">
+                                            No Completed Checklist Records
+                                        </div>
+
+                                        <div style="
+                        color:#64748b;
+                        font-size:13px;
+                    ">
+                                            No completed checklist records found for the selected date.
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
 
                         </table>
                         @if (ViewBag.TotalPages > 1)
@@ -428,8 +661,12 @@
                                        asp-controller="PMChecklist"
                                        asp-action="Index"
                                        asp-route-stageId="@ViewBag.StageId"
-                                       asp-route-page="@(ViewBag.CurrentPage - 1)">
+                                       asp-route-page="@(ViewBag.CurrentPage - 1)"
+                                       asp-route-fromDate="@ViewBag.FromDate"
+                                       asp-route-toDate="@ViewBag.ToDate">
+
                                         ‹ Previous
+
                                     </a>
                                 }
                                 else
@@ -458,7 +695,9 @@
                                            asp-controller="PMChecklist"
                                            asp-action="Index"
                                            asp-route-stageId="@ViewBag.StageId"
-                                           asp-route-page="1">
+                                           asp-route-page="1"
+                                           asp-route-fromDate="@ViewBag.FromDate"
+                                           asp-route-toDate="@ViewBag.ToDate">
                                             1
                                         </a>
 
@@ -485,7 +724,9 @@
                                                asp-controller="PMChecklist"
                                                asp-action="Index"
                                                asp-route-stageId="@ViewBag.StageId"
-                                               asp-route-page="@i">
+                                               asp-route-page="@i"
+                                               asp-route-fromDate="@ViewBag.FromDate"
+                                               asp-route-toDate="@ViewBag.ToDate">
                                                 @i
                                             </a>
                                         }
@@ -505,7 +746,9 @@
                                            asp-controller="PMChecklist"
                                            asp-action="Index"
                                            asp-route-stageId="@ViewBag.StageId"
-                                           asp-route-page="@totalPages">
+                                           asp-route-page="@totalPages"
+                                           asp-route-fromDate="@ViewBag.FromDate"
+                                           asp-route-toDate="@ViewBag.ToDate">
                                             @totalPages
                                         </a>
                                     }
@@ -520,8 +763,12 @@
                                        asp-controller="PMChecklist"
                                        asp-action="Index"
                                        asp-route-stageId="@ViewBag.StageId"
-                                       asp-route-page="@(ViewBag.CurrentPage + 1)">
+                                       asp-route-page="@(ViewBag.CurrentPage + 1)"
+                                       asp-route-fromDate="@ViewBag.FromDate"
+                                       asp-route-toDate="@ViewBag.ToDate">
+
                                         Next ›
+
                                     </a>
                                 }
                                 else
@@ -537,7 +784,6 @@
                     </div>
 
                 </div>
-            }
 
         </div>
 
@@ -1458,4 +1704,15 @@
             transform: translateY(-1px);
         }
 
+    .pm-date-input {
+        color-scheme: dark !important;
+        -webkit-appearance: auto !important;
+        appearance: auto !important;
+    }
+
+        .pm-date-input::-webkit-calendar-picker-indicator {
+            opacity: 1 !important;
+            filter: brightness(0) invert(1) !important;
+            cursor: pointer !important;
+        }
 </style>

@@ -16,5 +16,7 @@ namespace SMT_DELL_Project.Models
 
         [Required]
         public string Password { get; set; } = string.Empty;
+
+        public bool IsAdmin { get; set; } = false;
     }
 }
